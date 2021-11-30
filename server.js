@@ -32,7 +32,7 @@ app.use(home);
 app.use(tuning);
 app.use(profiles);
 app.use(contacts);
-app.use(login);
+app.use('/login', login);
 app.use(logout);
 app.use(_404);
 
