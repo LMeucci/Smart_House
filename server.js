@@ -15,8 +15,13 @@ const home = require('./routes/home'),
 
 
 const app = express();
-const port = process.env.PORT || 3000;
+// Ambient variables loaded from path dinamically, depending on env variable NODE_ENV.
+// echo NODE_ENV (linux) to check status of NODE_ENV
+require('dotenv').config({
+  path: `.env.${ app.get('env') }`
+});
 const log = fs.createWriteStream('logs/access.log', { flags: 'a'});
+
 
 // Templates to allow dynamic html pages
 app.set('views', './views');
@@ -38,4 +43,4 @@ app.use('/login', login);
 app.use(logout);
 app.use(_404);
 
-app.listen(port);
+app.listen(process.env.SMART_HOUSE_PORT);
