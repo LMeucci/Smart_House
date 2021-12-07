@@ -16,7 +16,8 @@ const home = require('./routes/home'),
 
 const app = express();
 // Ambient variables loaded from path dinamically, depending on env variable NODE_ENV.
-// echo NODE_ENV (linux) to check status of NODE_ENV
+// echo $NODE_ENV (linux) to check status of NODE_ENV
+// export NODE_ENV=development
 require('dotenv').config({
   path: `.env.${ app.get('env') }`
 });
@@ -43,4 +44,5 @@ app.use('/login', login);
 app.use(logout);
 app.use(_404);
 
+console.log(process.env.SMART_HOUSE_PORT);
 app.listen(process.env.SMART_HOUSE_PORT);

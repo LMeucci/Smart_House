@@ -1,0 +1,22 @@
+{
+  "name": "smart_house",
+  "version": "1.0.0",
+  "description": "1- Sistemare installazione GIT 2- Completare Area Login: come? 3- Per Preferences implemento un servizio rest su drive dove carico o salvo nuove impostazioni",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LMeucci/Smart_House.git"
+  },
+  "author": "Lorenzo Meucci",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LMeucci/Smart_House/issues"
+  },
+  "homepage": "https://github.com/LMeucci/Smart_House#readme",
+  "dependencies": {
+    "mongodb": "^4.2.1"
+  }
+}
