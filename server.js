@@ -1,8 +1,7 @@
-// Stock Middleware
+// Stock middleware
 const fs = require('fs'),
       morgan = require('morgan'),
       express = require('express');
-
 
 // Routes Handling
 const home = require('./routes/home'),
@@ -31,11 +30,13 @@ app.set('view engine', 'ejs');
 
 
                            /* APP CODE */
-// morgan middleware used to save request logs
+// Morgan middleware used to save request logs
 app.use(morgan('combined', {stream: log}));
-// inform express static files (eg: css) are inside public
+// Inform express static files (eg: css) are inside public
 app.use(express.static('public'));
 
+
+// Mount points for routes
 app.use(home);
 app.use(tuning);
 app.use(profiles);
@@ -44,5 +45,6 @@ app.use('/login', login);
 app.use(logout);
 app.use(_404);
 
-console.log(process.env.SMART_HOUSE_PORT);
-app.listen(process.env.SMART_HOUSE_PORT);
+app.listen(process.env.SMART_HOUSE_PORT, () =>{
+    console.log(`Server in ascolto sulla porta: ${process.env.SMART_HOUSE_PORT}`);
+  });
