@@ -1,38 +1,101 @@
-nav a {
-  text-decoration: none;
-  color: #333;
+nav a
+{
+    text-decoration: none;
+    color: #333;
 }
-nav ul {
-  margin-top: 50px;
-  margin-bottom: 50px;
-  margin-right: 40px;
-  list-style: none;
-  display: flex;
-  justify-content: space-evenly;
+
+nav ul
+{
+    padding-top: 20px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    margin-right: 40px;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: "Roboto";
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
 }
-main {
-  margin-left: 40px;
-  margin-right: 40px;
-  margin-top: 20px;
-  margin-bottom: 20px;
+
+main
+{
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
-main p {
-  text-align: justify;
+
+main p
+{
+    text-align: justify;
 }
-testo {
-  padding-left: 20px;
-  padding-right: 20px;
-  display: block;
-  border: 1px solid #ccc;
+
+main intro
+{
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 14px;
+    font-family: "sans-serif";
+    display: block;
+    border: 1px solid #ccc;
 }
-profile {
-  padding-left: 20px;
-  padding-right: 20px;
-  border: 1px solid #ccc;
-  margin-top: 20px;
-  display: block;
+
+main testo
+{
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 12px;
+    display: block;
+    border: 1px solid #ccc;
 }
-footer {
-  text-align: center;
-  margin-top: 30px;
+
+main sezione
+{
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 20px;
+    font-family: "Roboto";
+    display: block;
+    border: 1px solid #ccc;
+}
+
+main sezione h1
+{
+    color: #333;
+}
+
+main sezione p
+{
+    font-size: 14px;
+}
+
+main sezione led
+{
+    display: flex;
+    color: #333;
+}
+
+main sezione led input
+{
+    margin-top: 13px;
+    margin-left: 30px;
+    text-align: center;
+    width: 40px;
+    height: 30px;
+}
+
+main profile
+{
+    padding-left: 20px;
+    padding-right: 20px;
+    border: 1px solid #ccc;
+    margin-top: 20px;
+    display: block;
+}
+
+footer
+{
+    text-align: center;
+    margin-top: 30px;
 }

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <%- include('partials/head') %>
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    </head>
+
+    <body>
+        <header>
+            <%- include('partials/header') %>
+        </header>
+
+        <main>
+            <intro>
+                <p><%= info %></p>
+            </intro>
+
+            <sezione>
+                <h1><%= led %></h1>
+                <p><%= infoLED %></p>
+                <led>
+                    <h3>LED salotto intensità:</h3>
+                    <input type="text" id="LED value" placeholder="0" readonly>
+                </led>
+            </sezione>
+
+            <sezione>
+                <h1><%= pr %></h1>
+                <p><%= infoPR %></p>
+            </sezione>
+
+            <sezione>
+                <h1><%= save %></h1>
+                <p><%= infoSave %></p>
+            </sezione>
+
+        </main>
+
+        <footer>
+            <%- include('partials/footer') %>
+        </footer>
+
+    </body>
+</html>

@@ -1,16 +1,16 @@
 // Stock middleware
 const fs = require('fs'),
-      morgan = require('morgan'),
-      express = require('express');
+        morgan = require('morgan'),
+        express = require('express');
 
 // Routes Handling
 const home = require('./routes/home'),
-      tuning = require('./routes/tuning'),
-      profiles = require('./routes/profiles'),
-      contacts = require('./routes/contacts'),
-      login = require('./routes/login'),
-      logout = require('./routes/logout'),
-      _404 = require('./routes/404');
+        configurazione = require('./routes/configurazione'),
+        profiles = require('./routes/profiles'),
+        contacts = require('./routes/contacts'),
+        login = require('./routes/login'),
+        logout = require('./routes/logout'),
+        _404 = require('./routes/404');
 
 
 const app = express();
@@ -18,7 +18,7 @@ const app = express();
 // echo $NODE_ENV (linux) to check status of NODE_ENV
 // export NODE_ENV=development
 require('dotenv').config({
-  path: `.env.${ app.get('env') }`
+    path: `.env.${ app.get('env') }`
 });
 const log = fs.createWriteStream('logs/access.log', { flags: 'a'});
 
@@ -38,7 +38,7 @@ app.use(express.static('public'));
 
 // Mount points for routes
 app.use(home);
-app.use(tuning);
+app.use(configurazione);
 app.use(profiles);
 app.use(contacts);
 app.use('/login', login);
@@ -47,4 +47,4 @@ app.use(_404);
 
 app.listen(process.env.SMART_HOUSE_PORT, () =>{
     console.log(`Server in ascolto sulla porta: ${process.env.SMART_HOUSE_PORT}`);
-  });
+});
