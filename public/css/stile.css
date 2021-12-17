@@ -76,13 +76,25 @@ main sezione led
     color: #333;
 }
 
-main sezione led input
+main sezione led input[type=text]
 {
     margin-top: 13px;
     margin-left: 30px;
+    margin-right: 30px;
     text-align: center;
     width: 40px;
     height: 30px;
+}
+
+main sezione buttons input
+{
+    display: inline-block;
+    margin-top: 13px;
+    margin-left: 10px;
+    width: 32px;
+    height: 32px;
+    border-radius: 12px;
+    font-size: 20px;
 }
 
 main profile

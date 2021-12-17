@@ -19,8 +19,7 @@
                 <h1><%= led %></h1>
                 <p><%= infoLED %></p>
                 <led>
-                    <h3>LED salotto intensità:</h3>
-                    <input type="text" id="LED value" placeholder="0" readonly>
+                    <%- include('partials/led', {ambient:"Luci salotto intensità:", led:"led1", incButton:"incBut1", decButton:"decBut1"}) %>
                 </led>
             </sezione>
 
