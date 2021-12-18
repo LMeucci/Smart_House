@@ -1,0 +1,102 @@
+main intro
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
+    font-size: 18px;
+    font-family: "Roboto";
+    text-align: justify;
+    display: block;
+    border: 1px solid #ccc;
+}
+
+main div
+{
+    display: flex;
+}
+
+main div separation
+{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+main sezione
+{
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-family: "Roboto";
+    display: block;
+    width: 50%;
+    border: 1px solid #ccc;
+}
+
+main sezione titolo
+{
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
+}
+
+main sezione p
+{
+    margin-bottom: 60px;
+    font-size: 15px;
+}
+
+main sezione led
+{
+    margin-top: 20px;
+    display: flex;
+
+}
+
+main sezione led alignAmbient input
+{
+    margin-left: 50px;
+    width: 130px;
+    height: 50px;
+    border: 0px solid;
+    font-size: 18px;
+    font-family: "Roboto Condensed";
+    font-weight: 900;
+    text-align: justify;
+    color: #333;
+    background-color: #fff;
+}
+
+main sezione led alignValue input
+{
+    margin-top: 9px;
+    margin-left: 30px;
+    margin-right: 30px;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+}
+
+main sezione buttons input
+{
+    display: inline-block;
+    margin-top: 12px;
+    margin-left: 10px;
+    width: 32px;
+    height: 32px;
+    border-radius: 16px;
+    font-size: 20px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+main sezione buttons input:hover
+{
+    background-color: #333;
+    color: white;
+}

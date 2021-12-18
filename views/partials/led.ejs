@@ -1,21 +1,30 @@
 
-<h3> <%=ambient%> </h3>
-<input type="text" id= <%=led%> value="0" readonly>
+<alignAmbient>
+    <input type="text" id= <%=ambient%> value="<%=ambient%>" readonly disabled>
+</alignAmbient>
+
+<alignValue>
+    <input type="text" id= <%=led%> value="0" readonly disabled>
+</alignValue>
+
 <buttons>
     <input type="button" id= <%=incButton%> value="+" />
     <input type="button" id= <%=decButton%> value="-" />
     <script>
-        const inc = <%=incButton%>;
-        const dec = <%=decButton%>;
-        const led = <%= led %>;
-        
-        inc.addEventListener('click', () => {
-            let value = parseInt(led.value, 10);
-            led.value = (led.value == 10)? 10 : value+1;
-        });
-        dec.addEventListener('click', () => {
-            let value = parseInt(led.value, 10);
-            led.value = (led.value == 0)? 0 : value-1;
-        });
+        ( function()
+        {
+            const inc = document.getElementById('<%=incButton%>');
+            const dec = document.getElementById('<%=decButton%>');
+            const led = document.getElementById('<%=led%>');
+
+            inc.addEventListener('click', () => {
+                let value = parseInt(led.value, 10);
+                led.value = (led.value == 10)? 10 : value+1;
+            });
+            dec.addEventListener('click', () => {
+                let value = parseInt(led.value, 10);
+                led.value = (led.value == 0)? 0 : value-1;
+            });
+        })();
     </script>
 </buttons>

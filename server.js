@@ -5,7 +5,7 @@ const fs = require('fs'),
 
 // Routes Handling
 const home = require('./routes/home'),
-        configurazione = require('./routes/configurazione'),
+        config = require('./routes/config'),
         profiles = require('./routes/profiles'),
         contacts = require('./routes/contacts'),
         login = require('./routes/login'),
@@ -38,7 +38,7 @@ app.use(express.static('public'));
 
 // Mount points for routes
 app.use(home);
-app.use(configurazione);
+app.use(config);
 app.use(profiles);
 app.use(contacts);
 app.use('/login', login);

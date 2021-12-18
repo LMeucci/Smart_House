@@ -3,6 +3,8 @@
     <head>
         <%- include('partials/head') %>
         <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
+        <link rel="stylesheet" href="/css/config.css">
     </head>
 
     <body>
@@ -15,23 +17,34 @@
                 <p><%= info %></p>
             </intro>
 
-            <sezione>
-                <h1><%= led %></h1>
-                <p><%= infoLED %></p>
-                <led>
-                    <%- include('partials/led', {ambient:"Luci salotto intensità:", led:"led1", incButton:"incBut1", decButton:"decBut1"}) %>
-                </led>
-            </sezione>
+            <div>
+                <sezione>
+                    <titolo><%= led %></titolo>
+                    <p><%= infoLED %></p>
+                    <led><%- include('partials/led', {ambient:"Luci salotto:", led:"led1", incButton:"incBut1", decButton:"decBut1"}) %></led>
+                    <led><%- include('partials/led', {ambient:"Luci cucina:", led:"led2", incButton:"incBut2", decButton:"decBut2"}) %></led>
+                    <led><%- include('partials/led', {ambient:"Luci camera 1:", led:"led3", incButton:"incBut3", decButton:"decBut3"}) %></led>
+                    <led><%- include('partials/led', {ambient:"Luci camera 2:", led:"led4", incButton:"incBut4", decButton:"decBut4"}) %></led>
+                    <led><%- include('partials/led', {ambient:"Luci camera 3:", led:"led5", incButton:"incBut5", decButton:"decBut5"}) %></led>
+                    <led><%- include('partials/led', {ambient:"Luci bagno 1:", led:"led6", incButton:"incBut6", decButton:"decBut6"}) %></led>
+                    <led><%- include('partials/led', {ambient:"Luci bagno 2:", led:"led7", incButton:"incBut7", decButton:"decBut7"}) %></led>
+                    <led><%- include('partials/led', {ambient:"Luci ripostiglio:", led:"led8", incButton:"incBut8", decButton:"decBut8"}) %></led>
+                </sezione>
 
-            <sezione>
-                <h1><%= pr %></h1>
-                <p><%= infoPR %></p>
-            </sezione>
+                <separation></separation>
 
-            <sezione>
+                <sezione>
+                    <titolo><%= pr %></titolo>
+                    <p><%= infoPR %></p>
+
+                </sezione>
+
+            </div>
+
+            <sezioneSave>
                 <h1><%= save %></h1>
                 <p><%= infoSave %></p>
-            </sezione>
+            </sezioneSave>
 
         </main>
 

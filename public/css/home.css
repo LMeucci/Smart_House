@@ -1,0 +1,8 @@
+main testo
+{
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 12px;
+    display: block;
+    border: 1px solid #ccc;
+}
