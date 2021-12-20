@@ -1,0 +1,39 @@
+
+<div class="elemRow">
+
+    <input class="ambient" type="text" id= <%=ambient%> value="<%=ambient%>" readonly disabled>
+
+    <select class="prSelector" name="photoresistors" id= <%=sel%> >
+        <option value="Nessuno">Nessuno</option>
+        <option value="pr1">Fotoresistore 1</option>
+        <option value="pr2">Fotoresistore 2</option>
+        <option value="pr3">Fotoresistore 3</option>
+        <option value="pr4">Fotoresistore 4</option>
+        <option value="pr5">Fotoresistore 5</option>
+        <option value="pr6">Fotoresistore 6</option>
+        <option value="pr7">Fotoresistore 7</option>
+        <option value="pr8">Fotoresistore 8</option>
+    </select>
+    <script>
+        ( function()
+        {
+            const sel= document.getElementById('<%=sel%>');
+            const inc= document.getElementById('<%=incButton%>');
+            const dec= document.getElementById('<%=decButton%>');
+            const led = document.getElementById('<%=led%>');
+
+            sel.addEventListener('change', () => {
+                if( sel.value === "Nessuno")
+                {
+                    inc.disabled = false;
+                    dec.disabled = false;
+                }
+                else {
+                    inc.disabled = true;
+                    dec.disabled = true;
+                    led.value =0;
+                }
+            });
+        })();
+    </script>
+</div>

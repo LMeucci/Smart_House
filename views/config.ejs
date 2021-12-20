@@ -13,38 +13,50 @@
         </header>
 
         <main>
-            <intro>
+            <div class="intro">
                 <p><%= info %></p>
-            </intro>
+            </div>
 
-            <div>
-                <sezione>
+            <div class="elemRow">
+                
+                <div class="section split">
                     <titolo><%= led %></titolo>
                     <p><%= infoLED %></p>
-                    <led><%- include('partials/led', {ambient:"Luci salotto:", led:"led1", incButton:"incBut1", decButton:"decBut1"}) %></led>
-                    <led><%- include('partials/led', {ambient:"Luci cucina:", led:"led2", incButton:"incBut2", decButton:"decBut2"}) %></led>
-                    <led><%- include('partials/led', {ambient:"Luci camera 1:", led:"led3", incButton:"incBut3", decButton:"decBut3"}) %></led>
-                    <led><%- include('partials/led', {ambient:"Luci camera 2:", led:"led4", incButton:"incBut4", decButton:"decBut4"}) %></led>
-                    <led><%- include('partials/led', {ambient:"Luci camera 3:", led:"led5", incButton:"incBut5", decButton:"decBut5"}) %></led>
-                    <led><%- include('partials/led', {ambient:"Luci bagno 1:", led:"led6", incButton:"incBut6", decButton:"decBut6"}) %></led>
-                    <led><%- include('partials/led', {ambient:"Luci bagno 2:", led:"led7", incButton:"incBut7", decButton:"decBut7"}) %></led>
-                    <led><%- include('partials/led', {ambient:"Luci ripostiglio:", led:"led8", incButton:"incBut8", decButton:"decBut8"}) %></led>
-                </sezione>
+                    <div class="orizontalSep"></div>
+                    <p class="alignLedToPR"><%= infoLED2 %></p>
+                    <%- include('partials/led', {ambient:"Luci salotto:", led:"led1", incButton:"incBut1", decButton:"decBut1"}) %>
+                    <%- include('partials/led', {ambient:"Luci cucina:", led:"led2", incButton:"incBut2", decButton:"decBut2"}) %>
+                    <%- include('partials/led', {ambient:"Luci camera 1:", led:"led3", incButton:"incBut3", decButton:"decBut3"}) %>
+                    <%- include('partials/led', {ambient:"Luci camera 2:", led:"led4", incButton:"incBut4", decButton:"decBut4"}) %>
+                    <%- include('partials/led', {ambient:"Luci camera 3:", led:"led5", incButton:"incBut5", decButton:"decBut5"}) %>
+                    <%- include('partials/led', {ambient:"Luci bagno 1:", led:"led6", incButton:"incBut6", decButton:"decBut6"}) %>
+                    <%- include('partials/led', {ambient:"Luci bagno 2:", led:"led7", incButton:"incBut7", decButton:"decBut7"}) %>
+                    <%- include('partials/led', {ambient:"Luci ripostiglio:", led:"led8", incButton:"incBut8", decButton:"decBut8"}) %>
+                </div>
 
-                <separation></separation>
+                <div class="verticalSep"></div>
 
-                <sezione>
+                <div class="section split">
                     <titolo><%= pr %></titolo>
                     <p><%= infoPR %></p>
-
-                </sezione>
+                    <div class="orizontalSep"></div>
+                    <p class="alignLedToPR"><%= infoPR2 %></p>
+                    <%- include('partials/pr', {ambient:"Luci salotto:", led:"led1", incButton:"incBut1", decButton:"decBut1", sel:"sel1"}) %>
+                    <%- include('partials/pr', {ambient:"Luci cucina:", led:"led2", incButton:"incBut2", decButton:"decBut2", sel:"sel2"}) %>
+                    <%- include('partials/pr', {ambient:"Luci camera 1:", led:"led3", incButton:"incBut3", decButton:"decBut3", sel:"sel3"}) %>
+                    <%- include('partials/pr', {ambient:"Luci camera 2:", led:"led4", incButton:"incBut4", decButton:"decBut4", sel:"sel4"}) %>
+                    <%- include('partials/pr', {ambient:"Luci camera 3:", led:"led5", incButton:"incBut5", decButton:"decBut5", sel:"sel5"}) %>
+                    <%- include('partials/pr', {ambient:"Luci bagno 1:", led:"led6", incButton:"incBut6", decButton:"decBut6", sel:"sel6"}) %>
+                    <%- include('partials/pr', {ambient:"Luci bagno 2:", led:"led7", incButton:"incBut7", decButton:"decBut7", sel:"sel7"}) %>
+                    <%- include('partials/pr', {ambient:"Luci ripostiglio:", led:"led8", incButton:"incBut8", decButton:"decBut8", sel:"sel8"}) %>
+                </div>
 
             </div>
 
-            <sezioneSave>
-                <h1><%= save %></h1>
+            <div class="section">
+                <titolo><%= save %></titolo>
                 <p><%= infoSave %></p>
-            </sezioneSave>
+            </div>
 
         </main>
 

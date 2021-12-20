@@ -1,15 +1,11 @@
 
-<alignAmbient>
-    <input type="text" id= <%=ambient%> value="<%=ambient%>" readonly disabled>
-</alignAmbient>
+<div class="elemRow">
 
-<alignValue>
-    <input type="text" id= <%=led%> value="0" readonly disabled>
-</alignValue>
+    <input class="ambient" type="text" id= <%=ambient%> value="<%=ambient%>" readonly disabled>
+    <input class="value" type="text" id= <%=led%> value="0" readonly disabled>
 
-<buttons>
-    <input type="button" id= <%=incButton%> value="+" />
-    <input type="button" id= <%=decButton%> value="-" />
+    <input class="tuning" type="button" id= <%=incButton%> value="+" />
+    <input class="tuning" type="button" id= <%=decButton%> value="-" />
     <script>
         ( function()
         {
@@ -27,4 +23,4 @@
             });
         })();
     </script>
-</buttons>
+</div>

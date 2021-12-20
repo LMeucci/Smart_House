@@ -1,4 +1,4 @@
-main intro
+.intro
 {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -9,20 +9,26 @@ main intro
     text-align: justify;
     display: block;
     border: 1px solid #ccc;
+    background-color: #F5F5F5;
 }
 
-main div
+.elemRow
 {
     display: flex;
 }
 
-main div separation
+.split
+{
+    width: 50%;
+}
+
+.verticalSep
 {
     margin-left: 10px;
     margin-right: 10px;
 }
 
-main sezione
+.section
 {
     padding-top: 30px;
     padding-bottom: 30px;
@@ -32,70 +38,83 @@ main sezione
     margin-bottom: 20px;
     font-family: "Roboto";
     display: block;
-    width: 50%;
     border: 1px solid #ccc;
+    background-color: #F5F5F5;
 }
 
-main sezione titolo
+.section titolo
 {
     font-size: 30px;
     font-weight: bold;
     color: #333;
 }
 
-main sezione p
+.section p
 {
-    margin-bottom: 60px;
     font-size: 15px;
 }
 
-main sezione led
+.alignLedToPR
 {
-    margin-top: 20px;
-    display: flex;
-
+    margin-bottom: 32px;
 }
 
-main sezione led alignAmbient input
+.ambient
 {
-    margin-left: 50px;
+    margin-left: 15%;
     width: 130px;
     height: 50px;
     border: 0px solid;
     font-size: 18px;
     font-family: "Roboto Condensed";
     font-weight: 900;
-    text-align: justify;
     color: #333;
-    background-color: #fff;
+    background-color: #F5F5F5;
 }
 
-main sezione led alignValue input
+.value
 {
     margin-top: 9px;
-    margin-left: 30px;
+    margin-left: 10px;
     margin-right: 30px;
     font-size: 15px;
     font-weight: bold;
     text-align: center;
     width: 30px;
     height: 30px;
+    background-color: white;
 }
 
-main sezione buttons input
+.tuning
 {
-    display: inline-block;
     margin-top: 12px;
     margin-left: 10px;
     width: 32px;
     height: 32px;
     border-radius: 16px;
     font-size: 20px;
+    background-color: white;
     transition-duration: 0.4s;
     cursor: pointer;
 }
 
-main sezione buttons input:hover
+.tuning:hover
+{
+    background-color: #333;
+    color: white;
+}
+
+.prSelector
+{
+    margin-top: 11px;
+    margin-left: 10px;
+    height: 32px;
+    width: 130px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.prSelector:hover
 {
     background-color: #333;
     color: white;
