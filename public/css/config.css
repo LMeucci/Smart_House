@@ -119,3 +119,57 @@
     background-color: #333;
     color: white;
 }
+
+.orizontalSep
+{
+    margin-bottom: 20px;
+}
+
+.label
+{
+    margin-top: 30px;
+    margin-left: 7%;
+    font-size: 18px;
+    font-family: "Roboto Condensed";
+    font-weight: 900;
+    color: #333;
+}
+
+.saveName
+{
+    margin-top: 23px;
+    margin-left: 20px;
+    margin-right: 30px;
+    font-size: 18px;
+    font-family: "Roboto Condensed";
+    text-align: center;
+    width: 220px;
+    height: 30px;
+    background-color: white;
+}
+
+.saveInfo
+{
+    margin-top: 28px;
+    margin-left: 20px;
+    margin-right: 30px;
+    width: 303px;
+    height: 80px;
+    font-size: 18px;
+    font-family: "Roboto Condensed";
+    background-color: white;
+    resize: none;
+}
+
+.saveButton
+{
+    margin-top: 20px;
+    margin-left: 160px;
+    width: 100px;
+    height: 50px;
+    font-size: 18px;
+    font-family: "Roboto Condensed";
+    font-weight: 900;
+    color: #FEFEFE;
+    background-color: #555555;
+}
