@@ -20,9 +20,9 @@
             <div class="elemRow">
 
                 <div class="section split">
-                    <titolo><%= led %></titolo>
-                    <p><%= infoLED %></p>
-                    <p class="alignLedToPR"><%= infoLED2 %></p>
+                    <p class="title"><%= led %></p>
+                    <p class="sectionInfo"><%= infoLED %></p>
+                    <p class="sectionInfo alignLedToPR"><%= infoLED2 %></p>
                     <%- include('partials/led', {ambient:"Luci salotto:", led:"led1", incButton:"incBut1", decButton:"decBut1"}) %>
                     <%- include('partials/led', {ambient:"Luci cucina:", led:"led2", incButton:"incBut2", decButton:"decBut2"}) %>
                     <%- include('partials/led', {ambient:"Luci camera 1:", led:"led3", incButton:"incBut3", decButton:"decBut3"}) %>
@@ -36,9 +36,9 @@
                 <div class="verticalSep"></div>
 
                 <div class="section split">
-                    <titolo><%= pr %></titolo>
-                    <p><%= infoPR %></p>
-                    <p class="alignLedToPR"><%= infoPR2 %></p>
+                    <p class="title"><%= pr %></p>
+                    <p class="sectionInfo"><%= infoPR %></p>
+                    <p class="sectionInfo alignLedToPR"><%= infoPR2 %></p>
                     <%- include('partials/pr', {ambient:"Luci salotto:", led:"led1", incButton:"incBut1", decButton:"decBut1", sel:"sel1", index:"1"}) %>
                     <%- include('partials/pr', {ambient:"Luci cucina:", led:"led2", incButton:"incBut2", decButton:"decBut2", sel:"sel2", index:"2"}) %>
                     <%- include('partials/pr', {ambient:"Luci camera 1:", led:"led3", incButton:"incBut3", decButton:"decBut3", sel:"sel3", index:"3"}) %>
@@ -52,8 +52,8 @@
             </div>
 
             <div class="section">
-                <titolo><%= save %></titolo>
-                <p class="alignLedToPR"><%= infoSave %></p>
+                <p class="title"><%= save %></p>
+                <p class="sectionInfo alignLedToPR"><%= infoSave %></p>
                 <%- include('partials/save') %>
             </div>
 

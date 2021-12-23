@@ -30,7 +30,6 @@
 
 .section
 {
-    padding-top: 30px;
     padding-bottom: 30px;
     padding-left: 25px;
     padding-right: 25px;
@@ -42,21 +41,21 @@
     background-color: #F5F5F5;
 }
 
-.section titolo
+.title
 {
     font-size: 30px;
     font-weight: bold;
     color: #333;
 }
 
-.section p
+.sectionInfo
 {
     font-size: 15px;
 }
 
 .alignLedToPR
 {
-    margin-bottom: 32px;
+    margin-bottom: 50px;
 }
 
 .ambient

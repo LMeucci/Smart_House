@@ -3,11 +3,10 @@ const fs = require('fs'),
         morgan = require('morgan'),
         express = require('express');
 
-// Routes Handling
+// Routes handling
 const home = require('./routes/home'),
         config = require('./routes/config'),
         profiles = require('./routes/profiles'),
-        contacts = require('./routes/contacts'),
         login = require('./routes/login'),
         logout = require('./routes/logout'),
         _404 = require('./routes/404');
@@ -40,8 +39,8 @@ app.use(express.static('public'));
 app.use(home);
 app.use(config);
 app.use(profiles);
-app.use(contacts);
-app.use('/login', login);
+//app.use('/login', login);
+app.use(login)
 app.use(logout);
 app.use(_404);
 

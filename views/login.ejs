@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <%- include('partials/head') %>
+        <link rel="stylesheet" href="/css/login.css">
+    </head>
+
+    <body>
+        <header>
+            <%- include('partials/header') %>
+        </header>
+
+        <main>
+            <div class="intro">
+                <p class="orizontalSep"><%= info %></p>
+
+                <div class="elemRow">
+                    <label>Nome Utente:</label>
+                    <input type="text" name="user" placeholder="Inserisci il nome utente" required>
+                </div>
+
+                <div class="elemRow orizontalSep">
+                    <label>Password:</label>
+                    <input class="alignArea" type="password" name="password" placeholder="Inserisci la password" required>
+                </div>
+                <input class="loginButton orizontalSep" type="submit" value="Login">
+
+            </div>
+        </main>
+
+        <footer>
+            <%- include('partials/footer') %>
+        </footer>
+
+    </body>
+</html>
