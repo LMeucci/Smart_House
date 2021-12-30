@@ -11,20 +11,15 @@
         </header>
 
         <main>
-            <form action="/login" method="post">
+            <form action="/logout" method="post">
                 <div class="intro">
                     <p class="orizontalSep"><%= info %></p>
 
-                    <div class="elemRow">
-                        <label>Nome Utente:</label>
-                        <input type="text" name="username" placeholder="Inserisci il nome utente" required>
-                    </div>
-
                     <div class="elemRow orizontalSep">
-                        <label>Password:</label>
-                        <input class="alignArea" type="password" name="password" placeholder="Inserisci la password" required>
+                        <label>Sei sicuro di voler effettuare il logout?</label>
+                        <input class="alignArea" type="checkbox" name="check" unchecked>
                     </div>
-                    <input class="loginButton orizontalSep" type="submit" value="Login">
+                    <input class="loginButton orizontalSep" type="submit" value="Logout">
 
                 </div>
             </form>
