@@ -4,9 +4,11 @@ const router = express.Router();
 
 
 /////////////////////////* Routes Handlers *////////////////////////////////////
-router.get('/profiles', (req, res) => {
+router.get('/profili', (req, res) => {
 
     session = req.session;
+
+    // Check if already logged in = session.userid is setup
     if( session.userid )
     {
         const profili= [
@@ -22,7 +24,10 @@ router.get('/profiles', (req, res) => {
     }
     else
     {
-        res.send("Devi effettuare il login prima di poter configurare i tuoi dispositivi!");
+        res.render('notLogged', {
+            loginRef: "/login",
+            loginMenu: "Login"
+        });
     }
 });
 

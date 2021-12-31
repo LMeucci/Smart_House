@@ -17,26 +17,18 @@ router.get('/login', (req, res) => {
     session = req.session;
 
     // Check if already logged in = session.userid is setup
-    if( session.userid )
-    {
+    if( session.userid ) {
         res.render('logout', {
-            title: "Smart House",
             loginRef: "/logout",
             loginMenu: "Logout",
-            info: "Hai effettuato il login con successo! Non appena avrai terminato"
-                 +" le operazioni di configurazione e di caricamento dei profili salvati"
-                 +" ricordati di effettuare il logout dall'applicanzione premendo"
-                 +" il pulsante apposito all'interno di questa pagina."
+            message: req.flash('message')
         });
     }
-    else
-    {
+    else {
         res.render('login', {
-            title: "Smart House",
             loginRef: "/login",
             loginMenu: "Login",
-            info: "In questa pagina puoi effettuare il login per poter accedere alle"
-                 +" aree di configurazione e di caricamento dei profili salvati."
+            message: req.flash('message')
         });
     }
 });
@@ -44,23 +36,14 @@ router.get('/login', (req, res) => {
 router.post('/login', (req, res) => {
 
     // Check login data submitted through the form
-    if(req.body.username == adminName && req.body.password == adminPassword)
-    {
+    if(req.body.username == adminName && req.body.password == adminPassword) {
         session = req.session;
         session.userid = req.body.username;
-        res.render('logout', {
-            title: "Smart House",
-            loginRef: "/logout",
-            loginMenu: "Logout",
-            info: "Hai effettuato il login con successo! Non appena avrai terminato"
-                 +" le operazioni di configurazione e di caricamento dei profili salvati"
-                 +" ricordati di effettuare il logout dall'applicanzione premendo"
-                 +" il pulsante apposito all'interno di questa pagina."
-        });
+        res.redirect('/logout');
     }
-    else
-    {
-        res.send("Invalid username or password");
+    else {
+        req.flash('message', 'Nome utente e/o password errati!');
+        res.redirect('/login');
     }
 });
 

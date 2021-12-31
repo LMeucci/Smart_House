@@ -2,6 +2,7 @@
 const fs = require('fs'),
       morgan = require('morgan'),
       express = require('express'),
+      flash = require('connect-flash'),
       cookieParser = require('cookie-parser'),
       sessions = require('express-session'),
       oneDay = 1000 * 60 * 60 * 24; // Session Timeout
@@ -41,6 +42,7 @@ app.set('view engine', 'ejs');
 app.use(morgan('combined', {stream: log}));
 // Inform express static files (eg: css) are inside public
 app.use(express.static('public'));
+app.use(flash());
 
 // --------------- Session setup
 app.use(sessions({
