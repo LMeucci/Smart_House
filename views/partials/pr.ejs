@@ -33,9 +33,10 @@
                 const led = document.getElementById('<%=led%>');
                 const index = <%=index%>;
 
+                // Load Select value after POST request
                 let devs = <%- JSON.stringify(devices) %>;
                 let i = <%=index%>;
-                sel.value = devs[i-1];
+                sel.value = devs[i+8-1];
 
                 // Make sure each photoresistor can be assigned to only one LED
                 // and make sure LED intensity cannot be modified if a photoresistor

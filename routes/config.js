@@ -14,7 +14,7 @@ router.use(express.urlencoded({extended: true}));
 router.get('/configurazione', (req, res) => {
 
     session = req.session;
-
+    console.log(`session: ${session.userid}`);
     // Check if already logged in = session.userid is setup
     if( session.userid ) {
         const currentProfileJSON = fs.readFileSync(currentFile, 'utf-8');
@@ -38,6 +38,7 @@ router.get('/configurazione', (req, res) => {
 
 router.post('/configurazione', (req, res) => {
 
+    //session = req.session;
     const currentProfileJSON = fs.readFileSync(currentFile, 'utf-8');
     const currentProfile = JSON.parse(currentProfileJSON);
 
@@ -65,12 +66,17 @@ router.post('/configurazione', (req, res) => {
     }
     const devices = [];
     load(currentProfile, devices);
-    fs.writeFileSync(currentFile, JSON.stringify(currentProfile, null, 4));
+
+    /*
     res.render('config', {
         loginRef: "/logout",
         loginMenu: "Logout",
         devices: devices
-    });
+    });*/
+
+    fs.writeFileSync(currentFile, JSON.stringify(currentProfile, null, 4));
+    console.log(`sessionPost: ${req.session.userid}`);
+    res.redirect('/configurazione');
 });
 
 

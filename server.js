@@ -38,10 +38,10 @@ app.set('view engine', 'ejs');
 
 
                            /* APP CODE */
-// Morgan middleware used to save request logs
-app.use(morgan('combined', {stream: log}));
 // Inform express static files (eg: css) are inside public
 app.use(express.static('public'));
+// Morgan middleware used to save request logs
+app.use(morgan('combined', {stream: log}));
 app.use(flash());
 
 // --------------- Session setup
