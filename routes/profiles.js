@@ -11,7 +11,7 @@ router.get('/profili', (req, res) => {
     // Check if already logged in = session.userid is setup
     if( session.userid )
     {
-        const profili= [
+        const profili = [
             { id: "Profilo casa", info: "Utilizzato durante... per..."},
             { id: "Profilo allenamento", info: "Utilizzato durante... per..."},
             { id: "Profilo lavoro", info: "Utilizzato durante... per..."}

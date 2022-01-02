@@ -82,6 +82,8 @@
     width: 30px;
     height: 30px;
     background-color: white;
+    cursor: initial;
+    outline: none;
 }
 
 .tuning
@@ -160,10 +162,10 @@
     resize: none;
 }
 
-.saveButton
+.applyButton
 {
     margin-top: 20px;
-    margin-left: 160px;
+    margin-left: 20px;
     width: 100px;
     height: 50px;
     font-size: 18px;
@@ -171,4 +173,5 @@
     font-weight: 900;
     color: #FEFEFE;
     background-color: #555555;
+    cursor: pointer;
 }

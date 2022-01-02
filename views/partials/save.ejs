@@ -1,24 +1,31 @@
+<form action="/configurazione" method="post" id="saveForm">
+    <input type="hidden" name="formInstance" value="saveForm" />
+    <div class="orizontalSep"></div>
+    <div class="elemRow">
+        <label class="label">Nome Profilo (obbligatorio):</label>
+        <input class="saveName" type="text" id="profileName" name="profileName" placeholder="Inserisci il nome">
+        <input class="applyButton" type="button" id="apply" value="Applica">
+        <input class="applyButton" type="button" id="save" value="Salva">
+        <input class="applyButton" type="button" id="reset" value="Reset">
+    </div>
+    <div class="orizontalSep"></div>
+    <div class="elemRow">
+        <label class="label">Info (opzionale):</label>
+        <textarea class="saveInfo" id="profileInfo" name="profileInfo" rows="8" cols="80" placeholder="Inserisci una breve descrizione del profilo"=></textarea>
+    </div>
 
-<div class="orizontalSep"></div>
-<div class="elemRow">
-    <label class="label">Nome Profilo (obbligatorio):</label>
-    <input class="saveName" type="text" id="profileName" placeholder="Inserisci il nome">
-    <input class="saveButton" type="button" id="save" value="Salva">
-</div>
-<div class="orizontalSep"></div>
-<div class="elemRow">
-    <label class="label">Info (opzionale):</label>
-    <textarea class="saveInfo" id="profileInfo" name="name" rows="8" cols="80" placeholder="Inserisci una breve descrizione del profilo"=></textarea>
-</div>
+    <script>
+        // Immediately invoked function to start apply/save/reset buttons listeners
+        ( function()
+        {
+            const setupForm= document.getElementById('setupForm');
+            const applyButton = document.getElementById('apply');
+            const saveButton = document.getElementById('save');
+            const resetButton = document.getElementById('reset');
 
-<script>
-    // Immediately invoked function to start save button listener
-    ( function(){
-
-        const saveButton = document.getElementById('save');
-
-        saveButton.addEventListener('click', () => {
-            
-        });
-    })();
-</script>
+            applyButton.addEventListener('click', () => {
+                setupForm.submit();
+            });
+        })();
+    </script>
+</form>

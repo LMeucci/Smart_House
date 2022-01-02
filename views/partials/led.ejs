@@ -1,28 +1,38 @@
+    <div class="elemRow">
 
-<div class="elemRow">
+        <input class="ambient" type="text" id="<%=ambient%>" value="<%=ambient%>" readonly disabled>
+        <input class="value" type="text" id="<%=led%>" name="<%=led%>" value="0" readonly >
 
-    <input class="ambient" type="text" id= <%=ambient%> value="<%=ambient%>" readonly disabled>
-    <input class="value" type="text" id= <%=led%> value="0" readonly disabled>
+        <input class="tuning" type="button" id= <%=incButton%> value="+" />
+        <input class="tuning" type="button" id= <%=decButton%> value="-" />
+        <script>
 
-    <input class="tuning" type="button" id= <%=incButton%> value="+" />
-    <input class="tuning" type="button" id= <%=decButton%> value="-" />
-    <script>
+            // Immediately invoked function to monitor increment/decrement of each LED intensity
+            ( function()
+            {
+                const inc = document.getElementById('<%=incButton%>');
+                const dec = document.getElementById('<%=decButton%>');
+                const led = document.getElementById('<%=led%>');
 
-        // Immediately invoked function to monitor increment/decrement of each LED intensity
-        ( function()
-        {
-            const inc = document.getElementById('<%=incButton%>');
-            const dec = document.getElementById('<%=decButton%>');
-            const led = document.getElementById('<%=led%>');
+                let devs = <%- JSON.stringify(devices) %>;
+                let i = <%=index%>;
+                led.value = devs[i-1];
 
-            inc.addEventListener('click', () => {
-                let value = parseInt(led.value, 10);
-                led.value = (led.value == 10)? 10 : value+1;
-            });
-            dec.addEventListener('click', () => {
-                let value = parseInt(led.value, 10);
-                led.value = (led.value == 0)? 0 : value-1;
-            });
-        })();
-    </script>
-</div>
+
+                inc.addEventListener('click', () => {
+                    let value = parseInt(led.value, 10);
+                    //led.value = (led.value == 10)? 10 : value+1;
+                    if( led.value < 10 ) {
+                        led.value = value+1;
+                    }
+                });
+                dec.addEventListener('click', () => {
+                    let value = parseInt(led.value, 10);
+                    //led.value = (led.value == 0)? 0 : value-1;
+                    if( led.value >0 ) {
+                        led.value = value-1;
+                    }
+                });
+            })();
+        </script>
+    </div>
