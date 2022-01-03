@@ -1,6 +1,10 @@
-<form action="/configurazione" method="post" id="saveForm">
-    <input type="hidden" name="formInstance" value="saveForm" />
+
     <div class="orizontalSep"></div>
+    <% if( message.length > 0 ) { %>
+        <div>
+            <%= message %>
+        </div>
+    <% } %>
     <div class="elemRow">
         <label class="label">Nome Profilo (obbligatorio):</label>
         <input class="saveName" type="text" id="profileName" name="profileName" placeholder="Inserisci il nome">
@@ -18,14 +22,32 @@
         // Immediately invoked function to start apply/save/reset buttons listeners
         ( function()
         {
-            const setupForm= document.getElementById('setupForm');
             const applyButton = document.getElementById('apply');
             const saveButton = document.getElementById('save');
             const resetButton = document.getElementById('reset');
 
             applyButton.addEventListener('click', () => {
-                setupForm.submit();
+                sendFormAs('setup');
+            });
+
+            resetButton.addEventListener('click', () => {
+                /* Reset all LEDs and Photoresistors values
+                for(let i=1; i<9; i++) {
+                    document.getElementById("led"+i).value = 0;
+                    document.getElementById("sel"+i).value = "Nessuno";
+                }*/
+                sendFormAs('reset');
+            });
+
+            saveButton.addEventListener('click', () => {
+                sendFormAs('save');
             });
         })();
+
+        function sendFormAs(trigger)
+        {
+            const setupForm = document.getElementById('setupForm');
+            document.getElementById('formTrigger').value = trigger;
+            setupForm.submit();
+        }
     </script>
-</form>

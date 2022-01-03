@@ -23,67 +23,67 @@
                 </p>
             </div>
             <form action="/configurazione" method="post" id="setupForm" >
-                <input type="hidden" name="formInstance" value="setupForm" />
-            <div class="elemRow">
+                <input type="hidden" name="formTrigger" value="setup" id="formTrigger" />
+                <div class="elemRow">
 
-                <div class="section split">
-                    <p class="title">Area LED</p>
-                    <p class="sectionInfo">
-                        In questa area è possibile regolare la luminosità dei LED.
-                        Sono previsti 10 livelli (1-10) per ogni LED.
-                    </p>
-                    <p class="sectionInfo alignLedToPR">
-                        Se viene impostato un fotoresistore per un determinato
-                        LED non è possibile impostare un valore manuale per quello
-                        stesso LED finchè non viene selezionato il valore
-                        "Nessuno" per quel fotoresistore.
-                    </p>
-                    <%- include('partials/led', {ambient:"Luci salotto:", led:"led1", incButton:"incBut1", decButton:"decBut1", index:"1"}) %>
-                    <%- include('partials/led', {ambient:"Luci cucina:", led:"led2", incButton:"incBut2", decButton:"decBut2", index:"2"}) %>
-                    <%- include('partials/led', {ambient:"Luci camera 1:", led:"led3", incButton:"incBut3", decButton:"decBut3", index:"3"}) %>
-                    <%- include('partials/led', {ambient:"Luci camera 2:", led:"led4", incButton:"incBut4", decButton:"decBut4", index:"4"}) %>
-                    <%- include('partials/led', {ambient:"Luci camera 3:", led:"led5", incButton:"incBut5", decButton:"decBut5", index:"5"}) %>
-                    <%- include('partials/led', {ambient:"Luci bagno 1:", led:"led6", incButton:"incBut6", decButton:"decBut6", index:"6"}) %>
-                    <%- include('partials/led', {ambient:"Luci bagno 2:", led:"led7", incButton:"incBut7", decButton:"decBut7", index:"7"}) %>
-                    <%- include('partials/led', {ambient:"Luci ripostiglio:", led:"led8", incButton:"incBut8", decButton:"decBut8", index:"8"}) %>
+                    <div class="section split">
+                        <p class="title">Area LED</p>
+                        <p class="sectionInfo">
+                            In questa area è possibile regolare la luminosità dei LED.
+                            Sono previsti 10 livelli (1-10) per ogni LED.
+                        </p>
+                        <p class="sectionInfo alignLedToPR">
+                            Se viene impostato un fotoresistore per un determinato
+                            LED non è possibile impostare un valore manuale per quello
+                            stesso LED finchè non viene selezionato il valore
+                            "Nessuno" per quel fotoresistore.
+                        </p>
+                        <%- include('partials/led', {ambient:"Luci salotto:", led:"led1", incButton:"incBut1", decButton:"decBut1", index:"1"}) %>
+                        <%- include('partials/led', {ambient:"Luci cucina:", led:"led2", incButton:"incBut2", decButton:"decBut2", index:"2"}) %>
+                        <%- include('partials/led', {ambient:"Luci camera 1:", led:"led3", incButton:"incBut3", decButton:"decBut3", index:"3"}) %>
+                        <%- include('partials/led', {ambient:"Luci camera 2:", led:"led4", incButton:"incBut4", decButton:"decBut4", index:"4"}) %>
+                        <%- include('partials/led', {ambient:"Luci camera 3:", led:"led5", incButton:"incBut5", decButton:"decBut5", index:"5"}) %>
+                        <%- include('partials/led', {ambient:"Luci bagno 1:", led:"led6", incButton:"incBut6", decButton:"decBut6", index:"6"}) %>
+                        <%- include('partials/led', {ambient:"Luci bagno 2:", led:"led7", incButton:"incBut7", decButton:"decBut7", index:"7"}) %>
+                        <%- include('partials/led', {ambient:"Luci ripostiglio:", led:"led8", incButton:"incBut8", decButton:"decBut8", index:"8"}) %>
+                    </div>
+
+                    <div class="verticalSep"></div>
+
+                    <div class="section split">
+                        <p class="title">Area Fotoresistori</p>
+                        <p class="sectionInfo">
+                            In questa area è possibile associare ad ogni LED uno dei
+                            fotoresistori installati in modo da regolarne la luminosità
+                            in maniera automatica.
+                        </p>
+                        <p class="sectionInfo alignLedToPR">
+                            Fintanto che per un LED è selezionato un fotoresistore,
+                            per quello stesso LED non può essere impostato un valore
+                            manualmente tramite i suoi pulsanti.
+                        </p>
+                        <%- include('partials/pr', {ambient:"Luci salotto:", led:"led1", incButton:"incBut1", decButton:"decBut1", sel:"sel1", index:"1"}) %>
+                        <%- include('partials/pr', {ambient:"Luci cucina:", led:"led2", incButton:"incBut2", decButton:"decBut2", sel:"sel2", index:"2"}) %>
+                        <%- include('partials/pr', {ambient:"Luci camera 1:", led:"led3", incButton:"incBut3", decButton:"decBut3", sel:"sel3", index:"3"}) %>
+                        <%- include('partials/pr', {ambient:"Luci camera 2:", led:"led4", incButton:"incBut4", decButton:"decBut4", sel:"sel4", index:"4"}) %>
+                        <%- include('partials/pr', {ambient:"Luci camera 3:", led:"led5", incButton:"incBut5", decButton:"decBut5", sel:"sel5", index:"5"}) %>
+                        <%- include('partials/pr', {ambient:"Luci bagno 1:", led:"led6", incButton:"incBut6", decButton:"decBut6", sel:"sel6", index:"6"}) %>
+                        <%- include('partials/pr', {ambient:"Luci bagno 2:", led:"led7", incButton:"incBut7", decButton:"decBut7", sel:"sel7", index:"7"}) %>
+                        <%- include('partials/pr', {ambient:"Luci ripostiglio:", led:"led8", incButton:"incBut8", decButton:"decBut8", sel:"sel8", index:"8"}) %>
+                    </div>
                 </div>
 
-                <div class="verticalSep"></div>
-
-                <div class="section split">
-                    <p class="title">Area Fotoresistori</p>
-                    <p class="sectionInfo">
-                        In questa area è possibile associare ad ogni LED uno dei
-                        fotoresistori installati in modo da regolarne la luminosità
-                        in maniera automatica.
-                    </p>
+                <div class="section">
+                    <p class="title">Area di applicazione e salvataggio</p>
                     <p class="sectionInfo alignLedToPR">
-                        Fintanto che per un LED è selezionato un fotoresistore,
-                        per quello stesso LED non può essere impostato un valore
-                        manualmente tramite i suoi pulsanti.
+                        In questa area è possibile applicare le impostazioni
+                        selezionate nelle aree soprastanti, ai tuoi dispositivi.
+                        E' inoltre possibile salvare tali impostazioni inserendo un
+                        nome da associare alla configurazione scelta.
                     </p>
-                    <%- include('partials/pr', {ambient:"Luci salotto:", led:"led1", incButton:"incBut1", decButton:"decBut1", sel:"sel1", index:"1"}) %>
-                    <%- include('partials/pr', {ambient:"Luci cucina:", led:"led2", incButton:"incBut2", decButton:"decBut2", sel:"sel2", index:"2"}) %>
-                    <%- include('partials/pr', {ambient:"Luci camera 1:", led:"led3", incButton:"incBut3", decButton:"decBut3", sel:"sel3", index:"3"}) %>
-                    <%- include('partials/pr', {ambient:"Luci camera 2:", led:"led4", incButton:"incBut4", decButton:"decBut4", sel:"sel4", index:"4"}) %>
-                    <%- include('partials/pr', {ambient:"Luci camera 3:", led:"led5", incButton:"incBut5", decButton:"decBut5", sel:"sel5", index:"5"}) %>
-                    <%- include('partials/pr', {ambient:"Luci bagno 1:", led:"led6", incButton:"incBut6", decButton:"decBut6", sel:"sel6", index:"6"}) %>
-                    <%- include('partials/pr', {ambient:"Luci bagno 2:", led:"led7", incButton:"incBut7", decButton:"decBut7", sel:"sel7", index:"7"}) %>
-                    <%- include('partials/pr', {ambient:"Luci ripostiglio:", led:"led8", incButton:"incBut8", decButton:"decBut8", sel:"sel8", index:"8"}) %>
+                    <%- include('partials/save') %>
                 </div>
-            </div>
             </form>
-
-            <div class="section">
-                <p class="title">Area di applicazione e salvataggio</p>
-                <p class="sectionInfo alignLedToPR">
-                    In questa area è possibile applicare le impostazioni
-                    selezionate nelle aree soprastanti, ai tuoi dispositivi.
-                    E' inoltre possibile salvare tali impostazioni inserendo un
-                    nome da associare alla configurazione scelta.
-                </p>
-                <%- include('partials/save') %>
-            </div>
         </main>
 
         <footer>
