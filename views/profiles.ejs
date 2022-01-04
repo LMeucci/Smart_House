@@ -12,10 +12,46 @@
 
         <main>
             <% elencoProfili.forEach(profilo => { %>
-                <profile>
-                    <h1><%= profilo.id %></h1>
-                    <p><%= profilo.info %></p>
-                </profile>
+                <form action="/profili" method="post" id="profilesForm" >
+                    <input type="hidden" name="formTrigger" value="apply" id="formTrigger" />
+                    <input type="hidden" name="profileIndex" value="-1" id="formIndex"/>
+                    <profile>
+                        <h1><%= profilo.nome %></h1>
+                        <p><%= profilo.descrizione %></p>
+                    </profile>
+                    <input class="applyButton" type="button" id="apply" value="Applica">
+                    <input class="applyButton" type="button" id="delete" value="Elimina">
+                </form>
+
+                <script>
+                    // Immediately invoked function to start apply/save/reset buttons listeners
+                    ( function()
+                    {
+                        // Unique IDs for each button
+                        const index = <%=profilo.index%>;
+                        document.getElementById('apply').id = "apply"+index;
+                        document.getElementById('delete').id = "delete"+index;
+                        const applyButton = document.getElementById('apply'+index);
+                        const deleteButton = document.getElementById('delete'+index);
+
+
+                        applyButton.addEventListener('click', () => {
+                            sendFormAs('apply', index);
+                        });
+
+                        deleteButton.addEventListener('click', () => {
+                            sendFormAs('delete', index);
+                        });
+                    })();
+
+                    function sendFormAs(trigger, index)
+                    {
+                        const profilesForm = document.getElementById('profilesForm');
+                        document.getElementById('formTrigger').value = trigger;
+                        document.getElementById('formIndex').value = index;
+                        profilesForm.submit();
+                    }
+                </script>
             <% }); %>
         </main>
 

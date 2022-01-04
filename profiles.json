@@ -17,7 +17,8 @@
         "sel7": "pr3",
         "sel8": "Nessuno",
         "nome": "Relax",
-        "descrizione": "mi shallo"
+        "descrizione": "mi shallo",
+        "index": "0"
     },
     {
         "led1": "2",
@@ -37,7 +38,8 @@
         "sel7": "Nessuno",
         "sel8": "Nessuno",
         "nome": "Lavoro",
-        "descrizione": ""
+        "descrizione": "",
+        "index": "1"
     },
     {
         "led1": "7",
@@ -57,6 +59,7 @@
         "sel7": "Nessuno",
         "sel8": "pr7",
         "nome": "Allenamento",
-        "descrizione": "mi alleno"
+        "descrizione": "mi alleno",
+        "index": "2"
     }
 ]

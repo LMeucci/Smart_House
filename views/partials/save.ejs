@@ -1,53 +1,48 @@
 
-    <div class="orizontalSep"></div>
-    <% if( message.length > 0 ) { %>
-        <div>
-            <%= message %>
-        </div>
-    <% } %>
-    <div class="elemRow">
-        <label class="label">Nome Profilo (obbligatorio):</label>
-        <input class="saveName" type="text" id="profileName" name="profileName" placeholder="Inserisci il nome">
-        <input class="applyButton" type="button" id="apply" value="Applica">
-        <input class="applyButton" type="button" id="save" value="Salva">
-        <input class="applyButton" type="button" id="reset" value="Reset">
+<div class="orizontalSep"></div>
+<% if( message.length > 0 ) { %>
+    <div>
+        <%= message %>
     </div>
-    <div class="orizontalSep"></div>
-    <div class="elemRow">
-        <label class="label">Info (opzionale):</label>
-        <textarea class="saveInfo" id="profileInfo" name="profileInfo" rows="8" cols="80" placeholder="Inserisci una breve descrizione del profilo"=></textarea>
-    </div>
+<% } %>
+<div class="elemRow">
+    <label class="label">Nome Profilo (obbligatorio):</label>
+    <input class="saveName" type="text" id="profileName" name="profileName" placeholder="Inserisci il nome">
+    <input class="applyButton" type="button" id="apply" value="Applica">
+    <input class="applyButton" type="button" id="save" value="Salva">
+    <input class="applyButton" type="button" id="reset" value="Reset">
+</div>
+<div class="orizontalSep"></div>
+<div class="elemRow">
+    <label class="label">Info (opzionale):</label>
+    <textarea class="saveInfo" id="profileInfo" name="profileInfo" rows="8" cols="80" placeholder="Inserisci una breve descrizione del profilo"=></textarea>
+</div>
 
-    <script>
-        // Immediately invoked function to start apply/save/reset buttons listeners
-        ( function()
-        {
-            const applyButton = document.getElementById('apply');
-            const saveButton = document.getElementById('save');
-            const resetButton = document.getElementById('reset');
+<script>
+    // Immediately invoked function to start apply/save/reset buttons listeners
+    ( function()
+    {
+        const applyButton = document.getElementById('apply');
+        const saveButton = document.getElementById('save');
+        const resetButton = document.getElementById('reset');
 
-            applyButton.addEventListener('click', () => {
-                sendFormAs('setup');
-            });
+        applyButton.addEventListener('click', () => {
+            sendFormAs('setup');
+        });
 
-            resetButton.addEventListener('click', () => {
-                /* Reset all LEDs and Photoresistors values
-                for(let i=1; i<9; i++) {
-                    document.getElementById("led"+i).value = 0;
-                    document.getElementById("sel"+i).value = "Nessuno";
-                }*/
-                sendFormAs('reset');
-            });
+        resetButton.addEventListener('click', () => {
+            sendFormAs('reset');
+        });
 
-            saveButton.addEventListener('click', () => {
-                sendFormAs('save');
-            });
-        })();
+        saveButton.addEventListener('click', () => {
+            sendFormAs('save');
+        });
+    })();
 
-        function sendFormAs(trigger)
-        {
-            const setupForm = document.getElementById('setupForm');
-            document.getElementById('formTrigger').value = trigger;
-            setupForm.submit();
-        }
-    </script>
+    function sendFormAs(trigger)
+    {
+        const setupForm = document.getElementById('setupForm');
+        document.getElementById('formTrigger').value = trigger;
+        setupForm.submit();
+    }
+</script>

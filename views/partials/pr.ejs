@@ -1,84 +1,84 @@
 
-    <div class="elemRow">
+<div class="elemRow">
 
-        <input class="ambient" type="text" id= <%=ambient%> value="<%=ambient%>" readonly disabled>
+    <input class="ambient" type="text" id= <%=ambient%> value="<%=ambient%>" readonly disabled>
 
-        <select class="prSelector" title="Nessuno" name="<%=sel%>" id= <%=sel%> >
-            <option id="start0" value="Nessuno">Nessuno</option>
-            <option id="start1" value="pr1">Fotoresistore 1</option>
-            <option id="start2" value="pr2">Fotoresistore 2</option>
-            <option id="start3" value="pr3">Fotoresistore 3</option>
-            <option id="start4" value="pr4">Fotoresistore 4</option>
-            <option id="start5" value="pr5">Fotoresistore 5</option>
-            <option id="start6" value="pr6">Fotoresistore 6</option>
-            <option id="start7" value="pr7">Fotoresistore 7</option>
-            <option id="start8" value="pr8">Fotoresistore 8</option>
-        </select>
+    <select class="prSelector" title="Nessuno" name="<%=sel%>" id= <%=sel%> >
+        <option id="start0" value="Nessuno">Nessuno</option>
+        <option id="start1" value="pr1">Fotoresistore 1</option>
+        <option id="start2" value="pr2">Fotoresistore 2</option>
+        <option id="start3" value="pr3">Fotoresistore 3</option>
+        <option id="start4" value="pr4">Fotoresistore 4</option>
+        <option id="start5" value="pr5">Fotoresistore 5</option>
+        <option id="start6" value="pr6">Fotoresistore 6</option>
+        <option id="start7" value="pr7">Fotoresistore 7</option>
+        <option id="start8" value="pr8">Fotoresistore 8</option>
+    </select>
 
-        <script>
+    <script>
 
-            // Need to assign a unique id to each option of each select menus
-            document.getElementById('start0').id = <%=index%>+"Nessuno";
-            for(let j=1; j<9; j++) {
-                const oldId = "start"+j;
-                document.getElementById(oldId).id = <%=index%>+"pr"+j;
-            }
+        // Need to assign a unique id to each option of each select menus
+        document.getElementById('start0').id = <%=index%>+"Nessuno";
+        for(let j=1; j<9; j++) {
+            const oldId = "start"+j;
+            document.getElementById(oldId).id = <%=index%>+"pr"+j;
+        }
 
-            // Immediately invoked function to monitor select menus changes for each LED
-            ( function()
-            {
-                const sel= document.getElementById('<%=sel%>');
-                const inc= document.getElementById('<%=incButton%>');
-                const dec= document.getElementById('<%=decButton%>');
-                const led = document.getElementById('<%=led%>');
-                const index = <%=index%>;
+        // Immediately invoked function to monitor select menus changes for each LED
+        ( function()
+        {
+            const sel= document.getElementById('<%=sel%>');
+            const inc= document.getElementById('<%=incButton%>');
+            const dec= document.getElementById('<%=decButton%>');
+            const led = document.getElementById('<%=led%>');
+            const index = <%=index%>;
 
-                // Load Select value after POST request
-                let devs = <%- JSON.stringify(devices) %>;
-                let i = <%=index%>;
-                sel.value = devs[i+8-1];
+            // Load Select value after POST request
+            let devs = <%- JSON.stringify(devices) %>;
+            let i = <%=index%>;
+            sel.value = devs[i+8-1];
 
-                // Make sure each photoresistor can be assigned to only one LED
-                // and make sure LED intensity cannot be modified if a photoresistor
-                // for that LED is selected.
-                sel.addEventListener('change', () => {
+            // Make sure each photoresistor can be assigned to only one LED
+            // and make sure LED intensity cannot be modified if a photoresistor
+            // for that LED is selected.
+            sel.addEventListener('change', () => {
 
-                    if(sel.value === "Nessuno") {
-                        // No photoresistor assigned enable LED buttons
-                        inc.disabled = false;
-                        dec.disabled = false;
+                if(sel.value === "Nessuno") {
+                    // No photoresistor assigned enable LED buttons
+                    inc.disabled = false;
+                    dec.disabled = false;
+
+                    // Enable previous photoresistor selected to be assigned to LEDs
+                    for(let i=1; i<9; i++) {
+                        if(i != index) {
+                            const optionId = i+sel.title;
+                            document.getElementById(optionId).disabled = false;
+                        }
+                    }
+                }
+                else {
+                    // Photoresistor assigned disable LED buttons
+                    inc.disabled = true;
+                    dec.disabled = true;
+                    led.value =0;
+
+                    for(let i=1; i<9; i++) {
+                        if(i == index) continue;
+                        let optionId;
 
                         // Enable previous photoresistor selected to be assigned to LEDs
-                        for(let i=1; i<9; i++) {
-                            if(i != index) {
-                                const optionId = i+sel.title;
-                                document.getElementById(optionId).disabled = false;
-                            }
+                        if(sel.title != "Nessuno") {
+                            optionId = i+sel.title;
+                            document.getElementById(optionId).disabled = false;
                         }
+
+                        // Disable photoresistor selected to be assigned to other LEDs
+                        optionId = i+sel.value;
+                        document.getElementById(optionId).disabled = true;
                     }
-                    else {
-                        // Photoresistor assigned disable LED buttons
-                        inc.disabled = true;
-                        dec.disabled = true;
-                        led.value =0;
-
-                        for(let i=1; i<9; i++) {
-                            if(i == index) continue;
-                            let optionId;
-
-                            // Enable previous photoresistor selected to be assigned to LEDs
-                            if(sel.title != "Nessuno") {
-                                optionId = i+sel.title;
-                                document.getElementById(optionId).disabled = false;
-                            }
-
-                            // Disable photoresistor selected to be assigned to other LEDs
-                            optionId = i+sel.value;
-                            document.getElementById(optionId).disabled = true;
-                        }
-                    }
-                    sel.title = sel.value;
-                });
-            })();
-        </script>
-    </div>
+                }
+                sel.title = sel.value;
+            });
+        })();
+    </script>
+</div>

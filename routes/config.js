@@ -62,9 +62,11 @@ router.post('/configurazione', (req, res) => {
                 currentProfile.nome = req.body.profileName;
                 currentProfile.descrizione = req.body.profileInfo;
 
+
                 const profilesJSON= fs.readFileSync(profiles, 'utf-8'),
                       profilesArray= JSON.parse(profilesJSON);
 
+                currentProfile.index = profilesArray.length;
                 profilesArray.push(currentProfile);
                 fs.writeFileSync(profiles, JSON.stringify(profilesArray, null, 4));
                 fs.copyFile(model, current, () => {});
