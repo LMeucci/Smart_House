@@ -1,7 +1,10 @@
 
+const fs = require('fs');
 const express = require('express'),
       adminName = 'Lorenzo',
-      adminPassword = 'pass666';
+      adminPassword = 'pass666',
+      current = 'current-profile.json',
+      model = 'model.json';
 
 const router = express.Router();
 
@@ -39,6 +42,9 @@ router.post('/login', (req, res) => {
     if(req.body.username == adminName && req.body.password == adminPassword) {
         session = req.session;
         session.userid = req.body.username;
+
+        setUpControllerName(req.body.username);
+        resetCurrentProfile();
         res.redirect('/logout');
     }
     else {
@@ -46,5 +52,15 @@ router.post('/login', (req, res) => {
         res.redirect('/login');
     }
 });
+
+function setUpControllerName(name)
+{
+    console.log(`${name}-Casa`);
+}
+
+function resetCurrentProfile()
+{
+    fs.copyFile(model, current, () => {});
+}
 
 module.exports = router;

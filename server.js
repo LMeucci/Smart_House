@@ -62,5 +62,5 @@ app.use(logout);
 app.use(_404);
 
 app.listen(process.env.SMART_HOUSE_PORT, () =>{
-    console.log(`Server in ascolto sulla porta: ${process.env.SMART_HOUSE_PORT}`);
+    //console.log(`Server in ascolto sulla porta: ${process.env.SMART_HOUSE_PORT}`);
 });

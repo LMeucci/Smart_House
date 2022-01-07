@@ -1,7 +1,11 @@
 
 const fs = require('fs');
-const express = require('express');
-const profiles = 'profiles.json';
+const express = require('express'),
+      profiles = 'profiles.json',
+      MAX_LED_INTENSITY = 10,
+      LED = 2,
+      PR = 3,
+      RESET = 9;
 
 const router = express.Router();
 
@@ -38,17 +42,69 @@ router.get('/profili', (req, res) => {
 
 router.post('/profili', (req, res) => {
 
+    const profileIndex = req.body.profileIndex;
+    const profilesJSON = fs.readFileSync(profiles, 'utf-8'),
+          profilesArray= JSON.parse(profilesJSON);
+
     if(req.body.formTrigger == "apply") {
 
-        console.log(`item number (apply): ${req.body.profileIndex}`);
+        const currentProfile = profilesArray[profileIndex];
+        // Print commands for OnPC_client app to be sent to Arduino controller
+        resetController();
+        setUpControllerName(session.userid);
+        let i = 0;
+        for(let attribute in currentProfile) {
+
+            let attributeValue = currentProfile[attribute];
+            //console.log(`Before: ${attributeValue}`);
+            if( (i < 8) && (attributeValue != 0) ) {
+                setUpLED(i, attributeValue);
+            }
+            else if( (i >= 8) && (i < 16) && (attributeValue != "Nessuno") ) {
+                setUpLED(i-8, MAX_LED_INTENSITY);
+                setUpPR(attributeValue.charAt(2)-1, i-8);
+            }
+            i++;
+        }
     }
     else if (req.body.formTrigger == "delete") {
 
-        const profilesJSON= fs.readFileSync(profiles, 'utf-8'),
-              profilesArray= JSON.parse(profilesJSON);
-        console.log(`item number (delete): ${req.body.profileIndex}`);
+        const oldArrLength = profilesArray.length;
+        profilesArray.splice(profileIndex, 1);
+        for(let i=profileIndex; i<oldArrLength-1; i++) {
+            const currentProfile = profilesArray[profileIndex];
+            currentProfile.index -= 1;
+        }
+        fs.writeFileSync(profiles, JSON.stringify(profilesArray, null, 4));
+        //console.log(`item number (delete): ${req.body.profileIndex}`);
     }
     res.redirect('/profili');
 });
+
+//------------ Auxiliary functions
+function resetController()
+{
+    console.log(RESET);
+}
+
+function setUpControllerName(name)
+{
+    console.log(`${name}-Casa`);
+}
+
+function setUpLED(whichLED, value)
+{
+    console.log(LED);
+    console.log(whichLED);
+    scaledValue = 25*value;
+    (scaledValue < 100) ? console.log(`0${scaledValue}`) : console.log(scaledValue);
+}
+
+function setUpPR(whichPR, whichLED)
+{
+    console.log(PR);
+    console.log(whichPR);
+    console.log(whichLED);
+}
 
 module.exports = router;

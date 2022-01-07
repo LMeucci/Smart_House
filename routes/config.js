@@ -1,9 +1,13 @@
 
 const fs = require('fs');
-const express = require('express');
-const current = 'current-profile.json';
-const model = 'model.json';
-const profiles = 'profiles.json';
+const express = require('express'),
+      current = 'current-profile.json',
+      model = 'model.json',
+      profiles = 'profiles.json',
+      MAX_LED_INTENSITY = 10,
+      LED = 2,
+      PR = 3,
+      RESET = 9;
 
 const router = express.Router();
 
@@ -43,8 +47,12 @@ router.post('/configurazione', (req, res) => {
 
     //session = req.session;
     if(req.body.formTrigger == "reset") {
-        fs.copyFile(model, current, () => {});
+        resetCurrentProfile();
+        // Print commands for OnPC_client app to be sent to Arduino controller
+        resetController();
+        setUpControllerName(session.userid);
     }
+    // Form is either setup or save
     else {
         const currentProfileJSON = fs.readFileSync(current, 'utf-8'),
               currentProfile = JSON.parse(currentProfileJSON);
@@ -53,10 +61,29 @@ router.post('/configurazione', (req, res) => {
 
         if(req.body.formTrigger == "setup") {
             fs.writeFileSync(current, JSON.stringify(currentProfile, null, 4));
+
+            // Print commands for OnPC_client app to be sent to Arduino controller
+            //resetController();
+            //setUpControllerName(session.userid);
+            let i = 0;
+            for(let attribute in currentProfile) {
+
+                let attributeValue = currentProfile[attribute];
+                //console.log(`Before: ${attributeValue}`);
+                if( (i < 8) && (attributeValue != 0) ) {
+                    setUpLED(i, attributeValue);
+                }
+                else if( (i >= 8) && (i < 16) && (attributeValue != "Nessuno") ) {
+                    setUpLED(i-8, MAX_LED_INTENSITY);
+                    setUpPR(attributeValue.charAt(2)-1, i-8);
+                }
+                i++;
+            }
         }
         else if(req.body.formTrigger == "save") {
             if( !req.body.profileName ) {
                 req.flash('message', 'Devi inserire un nome per il profilo per poterlo salvare!');
+                fs.writeFileSync(current, JSON.stringify(currentProfile, null, 4));
             }
             else {
                 currentProfile.nome = req.body.profileName;
@@ -117,6 +144,36 @@ function loadCurrentProfile(currentProfile, devices)
     devices.push(currentProfile.sel6);
     devices.push(currentProfile.sel7);
     devices.push(currentProfile.sel8);
+}
+
+function resetCurrentProfile()
+{
+    fs.copyFile(model, current, () => {});
+}
+
+function resetController()
+{
+    console.log(RESET);
+}
+
+function setUpControllerName(name)
+{
+    console.log(`${name}-Casa`);
+}
+
+function setUpLED(whichLED, value)
+{
+    console.log(LED);
+    console.log(whichLED);
+    scaledValue = 25*value;
+    (scaledValue < 100) ? console.log(`0${scaledValue}`) : console.log(scaledValue);
+}
+
+function setUpPR(whichPR, whichLED)
+{
+    console.log(PR);
+    console.log(whichPR);
+    console.log(whichLED);
 }
 
 module.exports = router;
