@@ -9,6 +9,9 @@ const express = require('express'),
       PR = 3,
       RESET = 9;
 
+const rooms = ["salotto", "cucina", "camera1", "camera2",
+               "camera3", "bagno1", "bagno2", "ripostiglio"];
+
 const router = express.Router();
 
 //--------- Modules needed to parse a form response
@@ -32,7 +35,8 @@ router.get('/configurazione', (req, res) => {
             loginRef: "/logout",
             loginMenu: "Logout",
             message: req.flash('message'),
-            devices: devices
+            devices: devices,
+            rooms: rooms
         });
     }
     else {
@@ -93,7 +97,6 @@ router.post('/configurazione', (req, res) => {
                 const profilesJSON= fs.readFileSync(profiles, 'utf-8'),
                       profilesArray= JSON.parse(profilesJSON);
 
-                currentProfile.index = profilesArray.length;
                 profilesArray.push(currentProfile);
                 fs.writeFileSync(profiles, JSON.stringify(profilesArray, null, 4));
                 fs.copyFile(model, current, () => {});

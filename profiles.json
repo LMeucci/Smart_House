@@ -1,6 +1,6 @@
 [
     {
-        "led1": "7",
+        "led1": "1",
         "led2": "0",
         "led3": "0",
         "led4": "0",
@@ -15,18 +15,17 @@
         "sel5": "Nessuno",
         "sel6": "Nessuno",
         "sel7": "Nessuno",
-        "sel8": "pr1",
-        "nome": "Allenamento",
-        "descrizione": "mi alleno 7 - 1",
-        "index": -2
+        "sel8": "pr8",
+        "nome": "Relax",
+        "descrizione": "1(1) - 8(8)"
     },
     {
         "led1": "0",
-        "led2": "0",
+        "led2": "2",
         "led3": "0",
         "led4": "0",
-        "led5": "0",
-        "led6": "3",
+        "led5": "2",
+        "led6": "0",
         "led7": "0",
         "led8": "0",
         "sel1": "Nessuno",
@@ -36,10 +35,9 @@
         "sel5": "Nessuno",
         "sel6": "Nessuno",
         "sel7": "pr8",
-        "sel8": "Nessuno",
-        "nome": "Relax",
-        "descrizione": "Relax 6(3) - 7(8)",
-        "index": 2
+        "sel8": "pr7",
+        "nome": "Allenamento",
+        "descrizione": "2(2), 5(2) - 7(8), 8(7)"
     },
     {
         "led1": "0",
@@ -48,18 +46,17 @@
         "led4": "0",
         "led5": "0",
         "led6": "0",
-        "led7": "2",
-        "led8": "0",
-        "sel1": "Nessuno",
-        "sel2": "Nessuno",
+        "led7": "0",
+        "led8": "10",
+        "sel1": "pr1",
+        "sel2": "pr2",
         "sel3": "Nessuno",
         "sel4": "Nessuno",
         "sel5": "Nessuno",
         "sel6": "Nessuno",
         "sel7": "Nessuno",
-        "sel8": "pr7",
-        "nome": "Allenamento",
-        "descrizione": "Allenamento 7(2) - 8(7)",
-        "index": 3
+        "sel8": "Nessuno",
+        "nome": "Lavoro",
+        "descrizione": "10(10) - 1(1), 2(2)"
     }
 ]

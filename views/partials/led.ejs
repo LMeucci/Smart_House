@@ -1,34 +1,43 @@
     <div class="elemRow">
 
-        <input class="ambient" type="text" id="<%=ambient%>" value="<%=ambient%>" readonly disabled>
-        <input class="value" type="text" id="<%=led%>" name="<%=led%>" value="0" readonly >
+        <input class="ambient" type="text" id="ambientID" value="ambientValue" readonly disabled>
+        <input class="value" type="text" id="ledID" name="ledName" value="0" readonly >
 
-        <input class="tuning" type="button" id= <%=incButton%> value="+" />
-        <input class="tuning" type="button" id= <%=decButton%> value="-" />
+        <input class="tuning" type="button" id="incB" value="+" />
+        <input class="tuning" type="button" id="decB" value="-" />
         <script>
 
-            // Immediately invoked function to monitor increment/decrement of each LED intensity
+            // Immediately invoked function to monitor increment/decrement intensity of each LED
             ( function()
             {
-                const inc = document.getElementById('<%=incButton%>');
-                const dec = document.getElementById('<%=decButton%>');
-                const led = document.getElementById('<%=led%>');
+                let index = <%=index%>;
+                let rooms = <%- JSON.stringify(rooms) %>;
+                document.getElementById('ambientID').value = "Luci "+rooms[index-1];
 
+                // Assign unique IDs to each input field
+                document.getElementById('ambientID').id = "led"+rooms[index-1];
+                document.getElementById('ledID').id = "led"+index;
+                document.getElementById('incB').id = "incBut"+index;
+                document.getElementById('decB').id = "decBut"+index;
+
+
+                const inc = document.getElementById("incBut"+index);
+                const dec = document.getElementById("decBut"+index);
+                const led = document.getElementById("led"+index);
+
+                led.name = "led"+index;
                 let devs = <%- JSON.stringify(devices) %>;
-                let i = <%=index%>;
-                led.value = devs[i-1];
+                led.value = devs[index-1];
 
 
                 inc.addEventListener('click', () => {
                     let value = parseInt(led.value, 10);
-                    //led.value = (led.value == 10)? 10 : value+1;
                     if( led.value < 10 ) {
                         led.value = value+1;
                     }
                 });
                 dec.addEventListener('click', () => {
                     let value = parseInt(led.value, 10);
-                    //led.value = (led.value == 0)? 0 : value-1;
                     if( led.value >0 ) {
                         led.value = value-1;
                     }

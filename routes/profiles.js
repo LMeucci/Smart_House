@@ -7,6 +7,9 @@ const express = require('express'),
       PR = 3,
       RESET = 9;
 
+const rooms = ["salotto", "cucina", "camera1", "camera2",
+               "camera3", "bagno1", "bagno2", "ripostiglio"];
+
 const router = express.Router();
 
 //--------- Modules needed to parse a form response
@@ -28,7 +31,8 @@ router.get('/profili', (req, res) => {
         res.render('profiles', {
             loginRef: "/logout",
             loginMenu: "Logout",
-            elencoProfili: profilesArray
+            elencoProfili: profilesArray,
+            rooms: rooms
         });
     }
     else
@@ -50,8 +54,8 @@ router.post('/profili', (req, res) => {
 
         const currentProfile = profilesArray[profileIndex];
         // Print commands for OnPC_client app to be sent to Arduino controller
-        resetController();
-        setUpControllerName(session.userid);
+        //resetController();
+        //setUpControllerName(session.userid);
         let i = 0;
         for(let attribute in currentProfile) {
 
@@ -69,12 +73,7 @@ router.post('/profili', (req, res) => {
     }
     else if (req.body.formTrigger == "delete") {
 
-        const oldArrLength = profilesArray.length;
         profilesArray.splice(profileIndex, 1);
-        for(let i=profileIndex; i<oldArrLength-1; i++) {
-            const currentProfile = profilesArray[profileIndex];
-            currentProfile.index -= 1;
-        }
         fs.writeFileSync(profiles, JSON.stringify(profilesArray, null, 4));
         //console.log(`item number (delete): ${req.body.profileIndex}`);
     }

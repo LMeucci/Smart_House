@@ -11,13 +11,14 @@
         </header>
 
         <main>
-            <% elencoProfili.forEach(profilo => { %>
+            <% for(let i=0; i<elencoProfili.length; i++) { %>
                 <form action="/profili" method="post" id="profilesForm" >
                     <input type="hidden" name="formTrigger" value="apply" id="formTrigger" />
                     <input type="hidden" name="profileIndex" value="-1" id="formIndex"/>
                     <profile>
-                        <h1><%= profilo.nome %></h1>
-                        <p><%= profilo.descrizione %></p>
+                        <h1><%= elencoProfili[i].nome %></h1>
+                        <p><%= elencoProfili[i].descrizione %></p>
+                        <%- include('partials/displayProfile', {index:i}) %>
                     </profile>
                     <input class="applyButton" type="button" id="apply" value="Applica">
                     <input class="applyButton" type="button" id="delete" value="Elimina">
@@ -28,7 +29,7 @@
                     ( function()
                     {
                         // Unique IDs for each button
-                        const index = <%=profilo.index%>;
+                        const index = <%= i %>;
                         document.getElementById('apply').id = "apply"+index;
                         document.getElementById('delete').id = "delete"+index;
                         const applyButton = document.getElementById('apply'+index);
@@ -52,7 +53,7 @@
                         profilesForm.submit();
                     }
                 </script>
-            <% }); %>
+            <% } %>
         </main>
 
         <footer>

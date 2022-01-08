@@ -1,9 +1,9 @@
 {
     "led1": "0",
-    "led2": "1",
+    "led2": "0",
     "led3": "0",
     "led4": "0",
-    "led5": "4",
+    "led5": "0",
     "led6": "0",
     "led7": "0",
     "led8": "0",
@@ -12,10 +12,9 @@
     "sel3": "Nessuno",
     "sel4": "Nessuno",
     "sel5": "Nessuno",
-    "sel6": "pr7",
+    "sel6": "Nessuno",
     "sel7": "Nessuno",
     "sel8": "Nessuno",
     "nome": "",
-    "descrizione": "",
-    "index": ""
+    "descrizione": ""
 }
