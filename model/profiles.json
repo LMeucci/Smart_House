@@ -1,25 +1,5 @@
 [
     {
-        "led1": "1",
-        "led2": "0",
-        "led3": "0",
-        "led4": "0",
-        "led5": "0",
-        "led6": "0",
-        "led7": "0",
-        "led8": "0",
-        "sel1": "Nessuno",
-        "sel2": "Nessuno",
-        "sel3": "Nessuno",
-        "sel4": "Nessuno",
-        "sel5": "Nessuno",
-        "sel6": "Nessuno",
-        "sel7": "Nessuno",
-        "sel8": "pr8",
-        "nome": "Relax",
-        "descrizione": "1(1) - 8(8)"
-    },
-    {
         "led1": "0",
         "led2": "2",
         "led3": "0",
@@ -58,5 +38,25 @@
         "sel8": "Nessuno",
         "nome": "Lavoro",
         "descrizione": "8(10) - 1(1), 2(2)"
+    },
+    {
+        "led1": "2",
+        "led2": "0",
+        "led3": "0",
+        "led4": "0",
+        "led5": "0",
+        "led6": "4",
+        "led7": "0",
+        "led8": "0",
+        "sel1": "Nessuno",
+        "sel2": "Nessuno",
+        "sel3": "Nessuno",
+        "sel4": "pr2",
+        "sel5": "Nessuno",
+        "sel6": "Nessuno",
+        "sel7": "Nessuno",
+        "sel8": "Nessuno",
+        "nome": "Relax",
+        "descrizione": "1(2) - 6(4), 4(2)"
     }
 ]

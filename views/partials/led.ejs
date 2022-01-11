@@ -1,47 +1,49 @@
-    <div class="elemRow">
 
-        <input class="ambient" type="text" id="ambientID" value="ambientValue" readonly disabled>
-        <input class="value" type="text" id="ledID" name="ledName" value="0" readonly >
+<div class="elemRow">
 
-        <input class="tuning" type="button" id="incB" value="+" />
-        <input class="tuning" type="button" id="decB" value="-" />
-        <script>
+    <input class="ambient" type="text" id="ambientID" value="ambientValue" readonly disabled>
+    <input class="value" type="text" id="ledID" name="ledName" value="0" readonly >
 
-            // Immediately invoked function to monitor increment/decrement intensity of each LED
-            ( function()
-            {
-                let index = <%=index%>;
-                let rooms = <%- JSON.stringify(rooms) %>;
-                document.getElementById('ambientID').value = "Luci "+rooms[index-1];
+    <input class="tuning" type="button" id="incB" value="+" />
+    <input class="tuning" type="button" id="decB" value="-" />
+    <script>
 
-                // Assign unique IDs to each input field
-                document.getElementById('ambientID').id = "led"+rooms[index-1];
-                document.getElementById('ledID').id = "led"+index;
-                document.getElementById('incB').id = "incBut"+index;
-                document.getElementById('decB').id = "decBut"+index;
+        // Immediately invoked function to monitor increment/decrement intensity of each LED
+        ( function()
+        {
+            let index = <%=index%>;
+            let rooms = <%- JSON.stringify(rooms) %>;
+            document.getElementById('ambientID').value = "Luci "+rooms[index-1];
 
-
-                const inc = document.getElementById("incBut"+index);
-                const dec = document.getElementById("decBut"+index);
-                const led = document.getElementById("led"+index);
-
-                led.name = "led"+index;
-                let devs = <%- JSON.stringify(devices) %>;
-                led.value = devs[index-1];
+            // Assign unique IDs to each input field
+            document.getElementById('ambientID').id = "led"+rooms[index-1];
+            document.getElementById('ledID').id = "led"+index;
+            document.getElementById('incB').id = "incBut"+index;
+            document.getElementById('decB').id = "decBut"+index;
 
 
-                inc.addEventListener('click', () => {
-                    let value = parseInt(led.value, 10);
-                    if( led.value < 10 ) {
-                        led.value = value+1;
-                    }
-                });
-                dec.addEventListener('click', () => {
-                    let value = parseInt(led.value, 10);
-                    if( led.value >0 ) {
-                        led.value = value-1;
-                    }
-                });
-            })();
-        </script>
-    </div>
+            const inc = document.getElementById("incBut"+index);
+            const dec = document.getElementById("decBut"+index);
+            const led = document.getElementById("led"+index);
+
+            led.name = "led"+index;
+            // Load current profile LEDs settings
+            let devs = <%- JSON.stringify(devices) %>;
+            led.value = devs[index-1];
+
+
+            inc.addEventListener('click', () => {
+                let value = parseInt(led.value, 10);
+                if( led.value < 10 ) {
+                    led.value = value+1;
+                }
+            });
+            dec.addEventListener('click', () => {
+                let value = parseInt(led.value, 10);
+                if( led.value >0 ) {
+                    led.value = value-1;
+                }
+            });
+        })();
+    </script>
+</div>

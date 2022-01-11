@@ -1,29 +1,27 @@
 
-const fs = require('fs');
-const express = require('express'),
-      current = 'current-profile.json',
-      model = 'model.json',
-      profiles = 'profiles.json',
-      MAX_LED_INTENSITY = 10,
-      LED = 2,
-      PR = 3,
-      RESET = 9;
+const fs = require('fs'),
+      express = require('express'),
+      current = './model/current-profile.json',
+      profiles = './model/profiles.json',
+      RESET_FORM = "reset",
+      APPLY_FORM = "apply",
+      SAVE_FORM = "save";
+
+const { setUpControllerName,
+        resetController,
+        resetCurrentProfile,
+        setUpControllerDevices } = require('../controller/controls');
 
 const rooms = ["salotto", "cucina", "camera1", "camera2",
                "camera3", "bagno1", "bagno2", "ripostiglio"];
 
 const router = express.Router();
 
-//--------- Modules needed to parse a form response
-router.use(express.json());
-router.use(express.urlencoded({extended: true}));
-
 
 /////////////////////////* Routes Handlers *////////////////////////////////////
 router.get('/configurazione', (req, res) => {
 
     session = req.session;
-    //console.log(`session: ${session.userid}`);
     // Check if already logged in = session.userid is setup
     if( session.userid ) {
         const currentProfileJSON = fs.readFileSync(current, 'utf-8');
@@ -49,8 +47,7 @@ router.get('/configurazione', (req, res) => {
 
 router.post('/configurazione', (req, res) => {
 
-    //session = req.session;
-    if(req.body.formTrigger == "reset") {
+    if(req.body.formTrigger == RESET_FORM) {
         resetCurrentProfile();
         // Print commands for OnPC_client app to be sent to Arduino controller
         resetController();
@@ -63,47 +60,34 @@ router.post('/configurazione', (req, res) => {
 
         saveCurrentProfile(currentProfile, req);
 
-        if(req.body.formTrigger == "setup") {
+        if(req.body.formTrigger == APPLY_FORM) {
+            // Current profile model updated
             fs.writeFileSync(current, JSON.stringify(currentProfile, null, 4));
 
             // Print commands for OnPC_client app to be sent to Arduino controller
-            //resetController();
-            //setUpControllerName(session.userid);
-            let i = 0;
-            for(let attribute in currentProfile) {
-
-                let attributeValue = currentProfile[attribute];
-                //console.log(`Before: ${attributeValue}`);
-                if( (i < 8) && (attributeValue != 0) ) {
-                    setUpLED(i, attributeValue);
-                }
-                else if( (i >= 8) && (i < 16) && (attributeValue != "Nessuno") ) {
-                    setUpLED(i-8, MAX_LED_INTENSITY);
-                    setUpPR(attributeValue.charAt(2)-1, i-8);
-                }
-                i++;
-            }
+            // Only LEDs with intensity>0 and LEDs with photoresistor assigned are issued a command
+            setUpControllerDevices(currentProfile);
         }
-        else if(req.body.formTrigger == "save") {
+        else if(req.body.formTrigger == SAVE_FORM) {
             if( !req.body.profileName ) {
+                // Profile to save has no name
                 req.flash('message', 'Devi inserire un nome per il profilo per poterlo salvare!');
                 fs.writeFileSync(current, JSON.stringify(currentProfile, null, 4));
             }
             else {
+                // Add new profile to profiles model
                 currentProfile.nome = req.body.profileName;
                 currentProfile.descrizione = req.body.profileInfo;
-
-
                 const profilesJSON= fs.readFileSync(profiles, 'utf-8'),
                       profilesArray= JSON.parse(profilesJSON);
 
                 profilesArray.push(currentProfile);
                 fs.writeFileSync(profiles, JSON.stringify(profilesArray, null, 4));
-                fs.copyFile(model, current, () => {});
+
+                resetCurrentProfile();
             }
         }
     }
-    //console.log(`sessionPost: ${req.session.userid}`);
     res.redirect('/configurazione');
 });
 
@@ -147,36 +131,6 @@ function loadCurrentProfile(currentProfile, devices)
     devices.push(currentProfile.sel6);
     devices.push(currentProfile.sel7);
     devices.push(currentProfile.sel8);
-}
-
-function resetCurrentProfile()
-{
-    fs.copyFile(model, current, () => {});
-}
-
-function resetController()
-{
-    console.log(RESET);
-}
-
-function setUpControllerName(name)
-{
-    console.log(`${name}-Casa`);
-}
-
-function setUpLED(whichLED, value)
-{
-    console.log(LED);
-    console.log(whichLED);
-    scaledValue = 25*value;
-    (scaledValue < 100) ? console.log(`0${scaledValue}`) : console.log(scaledValue);
-}
-
-function setUpPR(whichPR, whichLED)
-{
-    console.log(PR);
-    console.log(whichPR);
-    console.log(whichLED);
 }
 
 module.exports = router;

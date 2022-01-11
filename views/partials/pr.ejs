@@ -25,17 +25,15 @@
             document.getElementById('ambientID').value = "Luci "+rooms[index-1];
             document.getElementById('selID').name = "sel"+index;
 
+            // Assign unique IDs to label, Select menu and each of its options
             document.getElementById('ambientID').id = "pr"+rooms[index-1];
             document.getElementById('selID').id = "sel"+index;
-
-            // Need to assign a unique id to each option of each select menus
             document.getElementById('start0').id = index+"Nessuno";
             for(let j=1; j<9; j++) {
                 const oldId = "start"+j;
                 document.getElementById(oldId).id = index+"pr"+j;
             }
 
-            
             const sel= document.getElementById("sel"+index);
             const inc = document.getElementById("incBut"+index);
             const dec = document.getElementById("decBut"+index);
@@ -48,6 +46,7 @@
             // Make sure each photoresistor can be assigned to only one LED
             // and make sure LED intensity cannot be modified if a photoresistor
             // for that LED is selected.
+            // Attribute title of Select used to hold previous selected value
             sel.addEventListener('change', () => {
 
                 if(sel.value === "Nessuno") {

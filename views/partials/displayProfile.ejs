@@ -1,8 +1,32 @@
-<%- include('partials/displayProfile', {ambientIndex:j}) %>
-<script>
 
-    //let roomLabels = < JSON.stringify(rooms) >;
-    //console.log(`Luci ${roomLabels[<=ambientIndex>]}`);
-    //document.getElementById('ambientID').value = "Luci "+rooms[<=ambientIndex>];
-    //document.getElementById('ambientID').id = "led"+rooms[<=ambientIndex>];
-</script>
+<profile>
+    <h1><%= elencoProfili[i].nome %></h1>
+    <p><%= elencoProfili[i].descrizione %></p>
+    <div>
+        <% let j = 0, roomLabels; %>
+        <% for (let attribute in elencoProfili[i]) { %>
+            <% if( j < 8 && elencoProfili[i][attribute] != 0 ) { %>
+                <input class="ambient" type="text" id="ambientID" value="ambientValue" readonly disabled>
+                <input class="value" type="text" value="<%=elencoProfili[i][attribute]%>" readonly disabled>
+                <script>
+                    roomLabels = <%- JSON.stringify(rooms) %>;
+                    document.getElementById('ambientID').value = "Luci "+roomLabels[<%=j%>];
+                    document.getElementById('ambientID').id = "led"+roomLabels[<%=j%>];
+                </script>
+            <% } %>
+            <% if( j>=8 && j<16 && elencoProfili[i][attribute] != "Nessuno" ) { %>
+                <input class="ambient" type="text" id="ambientID" value="ambientValue" readonly disabled>
+                <input class="value" type="text" value="<%=elencoProfili[i][attribute]%>" readonly disabled>
+                <script>
+                    roomLabels = <%- JSON.stringify(rooms) %>;
+                    document.getElementById('ambientID').value = "Luci "+roomLabels[<%=j%>-8];
+                    document.getElementById('ambientID').id = "pr"+roomLabels[<%=j%>-8];
+                </script>
+            <% } %>
+            <% j++; %>
+
+        <% } %>
+
+    </div>
+
+</profile>

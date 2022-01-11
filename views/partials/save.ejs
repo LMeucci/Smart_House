@@ -27,13 +27,11 @@
         const resetButton = document.getElementById('reset');
 
         applyButton.addEventListener('click', () => {
-            sendFormAs('setup');
+            sendFormAs('apply');
         });
-
         resetButton.addEventListener('click', () => {
             sendFormAs('reset');
         });
-
         saveButton.addEventListener('click', () => {
             sendFormAs('save');
         });

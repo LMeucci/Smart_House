@@ -53,6 +53,10 @@ app.use(sessions({
 }));
 app.use(cookieParser());
 
+//--------- Modules needed to parse a form response
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
 //--------- Mount points for routes
 app.use(home);
 app.use(config);
