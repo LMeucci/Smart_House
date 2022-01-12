@@ -1,13 +1,11 @@
 
-const fs = require('fs'),
-      express = require('express'),
-      profiles = './model/profiles.json',
+const      express = require('express'),
       APPLY_FORM = "apply",
       DELETE_FORM = "delete";
 
-const { setUpControllerName,
-        resetController,
-        setUpControllerDevices } = require('../controller/controls');
+const { loadProfiles,
+        loadProfileOnController,
+        deleteProfileFromDB } = require('../controller/controls');
 
 const rooms = ["salotto", "cucina", "camera1", "camera2",
                "camera3", "bagno1", "bagno2", "ripostiglio"];
@@ -17,46 +15,41 @@ const router = express.Router();
 
 /////////////////////////* Routes Handlers *////////////////////////////////////
 router.get('/profili', (req, res) => {
-
     session = req.session;
 
-    // Check if already logged in = session.userid is setup
-    if( session.userid )
-    {
-        const profilesJSON= fs.readFileSync(profiles, 'utf-8'),
-              profilesArray= JSON.parse(profilesJSON);
-
-        res.render('profiles', {
-            loginRef: "/logout",
-            loginMenu: "Logout",
-            elencoProfili: profilesArray,
-            rooms: rooms
-        });
-    }
-    else
-    {
+    // User not logged in
+    if( !session.userid ) {
         res.render('notLogged', {
             loginRef: "/login",
             loginMenu: "Login"
         });
+        return;
     }
+    // User logged in
+    const profiles = loadProfiles();
+    res.render('profiles', {
+        loginRef: "/logout",
+        loginMenu: "Logout",
+        elencoProfili: profiles,
+        rooms: rooms
+    });
 });
 
 router.post('/profili', (req, res) => {
+    session = req.session;
 
+    // User not logged in
+    if( !session.userid ) {
+        res.redirect('/profili');
+        return;
+    }
+    // User logged in
     const profileIndex = req.body.profileIndex;
-    const profilesJSON = fs.readFileSync(profiles, 'utf-8'),
-          profilesArray= JSON.parse(profilesJSON);
-
     if(req.body.formTrigger == APPLY_FORM) {
-
-        const currentProfile = profilesArray[profileIndex];
-        // Print commands for OnPC_client app to be sent to Arduino controller
-        setUpControllerDevices(currentProfile);
+        loadProfileOnController(profileIndex);
     }
     else if (req.body.formTrigger == DELETE_FORM) {
-        profilesArray.splice(profileIndex, 1);
-        fs.writeFileSync(profiles, JSON.stringify(profilesArray, null, 4));
+        deleteProfileFromDB(profileIndex);
     }
     res.redirect('/profili');
 });

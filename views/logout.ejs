@@ -22,6 +22,11 @@
                     </p>
 
                     <div class="elemRow orizontalSep">
+                        <% if( message.length > 0 ) { %>
+                            <div>
+                                <%= message %>
+                            </div>
+                        <% } %>
                         <label>Sei sicuro di voler effettuare il logout?</label>
                         <input class="alignArea" type="checkbox" name="check" unchecked>
                     </div>

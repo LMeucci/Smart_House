@@ -58,5 +58,25 @@
         "sel8": "Nessuno",
         "nome": "Relax",
         "descrizione": "1(2) - 6(4), 4(2)"
+    },
+    {
+        "led1": "1",
+        "led2": "1",
+        "led3": "1",
+        "led4": "1",
+        "led5": "1",
+        "led6": "1",
+        "led7": "1",
+        "led8": "1",
+        "sel1": "Nessuno",
+        "sel2": "Nessuno",
+        "sel3": "Nessuno",
+        "sel4": "Nessuno",
+        "sel5": "Nessuno",
+        "sel6": "Nessuno",
+        "sel7": "Nessuno",
+        "sel8": "Nessuno",
+        "nome": "Allenamento",
+        "descrizione": "1-8(1)"
     }
 ]
