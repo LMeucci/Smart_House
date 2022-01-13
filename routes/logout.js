@@ -8,6 +8,14 @@ const router = express.Router();
 
 /////////////////////////* Routes Handlers *///////////////////////////////////
 router.get('/logout', (req, res) => {
+    session = req.session;
+
+    // User not logged in
+    if( !session.userid ) {
+        res.redirect('/login');
+        return;
+    }
+    // User logged in
     res.render('logout', {
         loginRef: "/logout",
         loginMenu: "Logout",
@@ -17,13 +25,13 @@ router.get('/logout', (req, res) => {
 
 router.post('/logout', (req, res) => {
 
-    // Only accepts POST request from logged in user
+    // User not logged in
     session = req.session;
     if( !session.userid ) {
         res.redirect('/login');
         return;
     }
-
+    // User logged in
     if(req.body.check) {
         req.session.destroy();
         resetController();

@@ -61,13 +61,13 @@
     },
     {
         "led1": "1",
-        "led2": "1",
-        "led3": "1",
-        "led4": "1",
-        "led5": "1",
-        "led6": "1",
-        "led7": "1",
-        "led8": "1",
+        "led2": "0",
+        "led3": "0",
+        "led4": "0",
+        "led5": "0",
+        "led6": "0",
+        "led7": "0",
+        "led8": "0",
         "sel1": "Nessuno",
         "sel2": "Nessuno",
         "sel3": "Nessuno",
@@ -77,6 +77,6 @@
         "sel7": "Nessuno",
         "sel8": "Nessuno",
         "nome": "Allenamento",
-        "descrizione": "1-8(1)"
+        "descrizione": "1(1)"
     }
 ]

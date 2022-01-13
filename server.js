@@ -1,11 +1,13 @@
-// Stock middleware
+// Middlewares
 const fs = require('fs'),
       morgan = require('morgan'),
       express = require('express'),
       flash = require('connect-flash'),
       cookieParser = require('cookie-parser'),
       sessions = require('express-session'),
-      oneDay = 1000 * 60 * 60 * 24; // Session Timeout
+      oneDay = 1000 * 60 * 60 * 24, // Session Timeout
+      randomstring = require('randomstring');
+
 
 // Routes handling
 const home = require('./routes/home'),
@@ -17,8 +19,7 @@ const home = require('./routes/home'),
 
 
 const app = express();
-// Variable to store session key
-let session;
+
 
 // Ambient variables loaded from path dinamically, depending on env variable NODE_ENV.
 // echo $NODE_ENV (linux) to check status of NODE_ENV
@@ -45,9 +46,10 @@ app.use(morgan('combined', {stream: log}));
 app.use(flash());
 
 // --------------- Session setup
+const randomSecret = randomstring.generate();
 app.use(sessions({
-    secret: "thisismysecretkey666",
-    saveUninitialized: true,
+    secret: randomSecret,
+    saveUninitialized: false,
     cookie: { maxAge: oneDay },
     resave: false
 }));
