@@ -1,32 +1,47 @@
 
-<profile>
-    <h1><%= elencoProfili[i].nome %></h1>
-    <p><%= elencoProfili[i].descrizione %></p>
-    <div>
-        <% let j = 0, roomLabels; %>
+<div class="elemRow mgTop">
+    <% let j = 0, roomLabels; %>
+    <div class="split">
         <% for (let attribute in elencoProfili[i]) { %>
             <% if( j < 8 && elencoProfili[i][attribute] != 0 ) { %>
-                <input class="ambient" type="text" id="ambientID" value="ambientValue" readonly disabled>
-                <input class="value" type="text" value="<%=elencoProfili[i][attribute]%>" readonly disabled>
-                <script>
-                    roomLabels = <%- JSON.stringify(rooms) %>;
-                    document.getElementById('ambientID').value = "Luci "+roomLabels[<%=j%>];
-                    document.getElementById('ambientID').id = "led"+roomLabels[<%=j%>];
-                </script>
-            <% } %>
-            <% if( j>=8 && j<16 && elencoProfili[i][attribute] != "Nessuno" ) { %>
-                <input class="ambient" type="text" id="ambientID" value="ambientValue" readonly disabled>
-                <input class="value" type="text" value="<%=elencoProfili[i][attribute]%>" readonly disabled>
-                <script>
-                    roomLabels = <%- JSON.stringify(rooms) %>;
-                    document.getElementById('ambientID').value = "Luci "+roomLabels[<%=j%>-8];
-                    document.getElementById('ambientID').id = "pr"+roomLabels[<%=j%>-8];
-                </script>
+                <div class="elemRow">
+                    <input class="ambient" type="text" id="ambientID" value="ambientValue" readonly disabled>
+                    <input class="valueIntensity" type="text" value="<%=elencoProfili[i][attribute]%>" readonly disabled>
+                    <script>
+                        ( function()
+                        {
+                            roomLabels = <%- JSON.stringify(rooms) %>;
+                            document.getElementById('ambientID').value = "Luci "+roomLabels[<%=j%>];
+                            document.getElementById('ambientID').id = "led"+roomLabels[<%=j%>];
+                        })();
+                    </script>
+                </div>
             <% } %>
             <% j++; %>
-
         <% } %>
-
     </div>
+    <% j=0; %>
+    <div class="split">
+        <% for (let attribute in elencoProfili[i]) { %>
+            <% if( j>=8 && j<16 && elencoProfili[i][attribute] != "Nessuno" ) { %>
+                <div class="elemRow">
+                    <input class="ambient" type="text" id="ambientID" value="ambientValue" readonly disabled>
+                    <input class="valuePhotoresistor" type="text" id="valueID" value="<%=elencoProfili[i][attribute]%>" readonly disabled>
+                    <script>
+                        ( function()
+                        {
+                            roomLabels = <%- JSON.stringify(rooms) %>;
+                            document.getElementById('ambientID').value = "Luci "+roomLabels[<%=j%>-8];
+                            document.getElementById('ambientID').id = "pr"+roomLabels[<%=j%>-8];
 
-</profile>
+                            const val = "<%=elencoProfili[i][attribute]%>";
+                            document.getElementById('valueID').value = "Fotoresistore "+val.charAt(2);
+                            document.getElementById('valueID').id = val;
+                        })();
+                    </script>
+                </div>
+            <% } %>
+            <% j++; %>
+        <% } %>
+    </div>
+</div>

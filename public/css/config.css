@@ -53,7 +53,12 @@
     font-size: 15px;
 }
 
-.alignLedToPR
+.mgBottomLed
+{
+    margin-bottom: 70px;
+}
+
+.mgBottom
 {
     margin-bottom: 50px;
 }
@@ -124,6 +129,12 @@
 .orizontalSep
 {
     margin-bottom: 20px;
+}
+
+.message
+{
+    margin-left: 7%;
+    color: red;
 }
 
 .label

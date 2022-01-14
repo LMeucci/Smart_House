@@ -11,7 +11,7 @@
 
 main p
 {
-    font-size: 20px;
+    font-size: 18px;
     font-family: "Roboto";
     text-align: justify;
 }
@@ -24,6 +24,17 @@ main p
 .orizontalSep
 {
     margin-bottom: 40px;
+}
+
+.message
+{
+    font-size: 18px;
+    color: red;
+}
+
+.mgTop
+{
+    margin-top: 30px;
 }
 
 label
@@ -49,9 +60,14 @@ input[type=text], [type=password]
     background-color: white;
 }
 
+input[type=checkbox]
+{
+    margin-top: 35px;
+}
+
 .alignArea
 {
-    margin-left: 46px;
+    margin-left: 36px;
 }
 
 .loginButton

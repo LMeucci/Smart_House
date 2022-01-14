@@ -2,7 +2,85 @@ main profile
 {
     padding-left: 20px;
     padding-right: 20px;
+    padding-bottom: 20px;
     border: 1px solid #ccc;
     margin-top: 20px;
+    margin-bottom: 40px;
     display: block;
+    background-color: #F5F5F5;
+}
+
+.elemRow
+{
+    display: flex;
+}
+
+.split
+{
+    width: 50%;
+}
+
+.mgTop
+{
+    margin-top: 40px;
+}
+
+.ambient
+{
+    margin-left: 10px;
+    width: 95px;
+    height: 50px;
+    border: 0px solid;
+    font-size: 16px;
+    font-family: "Roboto Condensed";
+    font-weight: 900;
+    color: #333;
+    background-color: #F5F5F5;
+}
+
+.valueIntensity
+{
+    margin-top: 13px;
+    margin-left: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    cursor: initial;
+    outline: none;
+}
+
+.valuePhotoresistor
+{
+    margin-top: 13px;
+    margin-left: 10px;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    width: 130px;
+    height: 20px;
+    background-color: white;
+    cursor: initial;
+    outline: none;
+}
+
+.buttons
+{
+    display: flex;
+}
+
+.applyButton
+{
+    margin-top: 40px;
+    margin-right: 20px;
+    width: 80px;
+    height: 45px;
+    font-size: 16px;
+    font-family: "Roboto Condensed";
+    font-weight: 900;
+    color: #FEFEFE;
+    background-color: #555555;
+    cursor: pointer;
 }

@@ -1,19 +1,21 @@
 .section
 {
+    padding-top: 1%;
     padding-bottom: 30px;
-    padding-left: 25px;
-    padding-right: 25px;
+    padding-left: 4%;
+    padding-right: 4%;
     margin-top: 20px;
     margin-bottom: 20px;
     font-family: "Roboto";
     display: block;
+    text-align: justify;
     border: 1px solid #ccc;
     background-color: #F5F5F5;
 }
 
 .title
 {
-    font-size: 30px;
+    font-size: 40px;
     font-weight: bold;
     color: #333;
 }
@@ -21,4 +23,42 @@
 .sectionInfo
 {
     font-size: 18px;
+}
+
+.noBullet
+{
+    list-style: none;
+}
+
+.padding
+{
+    padding-right: 5%;
+}
+
+.elemRow
+{
+    display: flex;
+}
+
+.verticalSep
+{
+    margin-right: 10px;
+}
+
+.bulletName
+{
+    font-size: 21px;
+    font-family: "Roboto Condensed";
+    font-weight: 900;
+    color: #333;
+}
+
+.alignToName
+{
+    margin-top: 23px;
+}
+
+.bulletInfo
+{
+    font-size: 17px;
 }

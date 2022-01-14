@@ -2,8 +2,6 @@
 <html lang="en" dir="ltr">
     <head>
         <%- include('partials/head') %>
-        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed" rel="stylesheet">
         <link rel="stylesheet" href="/css/config.css">
     </head>
 
@@ -32,7 +30,7 @@
                             In questa area è possibile regolare la luminosità dei LED.
                             Sono previsti 10 livelli (1-10) per ogni LED.
                         </p>
-                        <p class="sectionInfo alignLedToPR">
+                        <p class="sectionInfo mgBottomLed">
                             Se viene impostato un fotoresistore per un determinato
                             LED non è possibile impostare un valore manuale per quello
                             stesso LED finchè non viene selezionato il valore
@@ -50,9 +48,10 @@
                         <p class="sectionInfo">
                             In questa area è possibile associare ad ogni LED uno dei
                             fotoresistori installati in modo da regolarne la luminosità
-                            in maniera automatica.
+                            in maniera automatica. Ogni fotoresistore può essere
+                            associato ad un solo LED.
                         </p>
-                        <p class="sectionInfo alignLedToPR">
+                        <p class="sectionInfo mgBottom">
                             Fintanto che per un LED è selezionato un fotoresistore,
                             per quello stesso LED non può essere impostato un valore
                             manualmente tramite i suoi pulsanti.
@@ -74,7 +73,7 @@
 
                 <div class="section">
                     <p class="title">Area di applicazione e salvataggio</p>
-                    <p class="sectionInfo alignLedToPR">
+                    <p class="sectionInfo mgBottom">
                         In questa area è possibile applicare le impostazioni
                         selezionate nelle aree soprastanti, ai tuoi dispositivi.
                         E' inoltre possibile salvare tali impostazioni inserendo un

@@ -15,9 +15,15 @@
                 <form action="/profili" method="post" id="profilesForm" >
                     <input type="hidden" name="formTrigger" value="apply" id="formTrigger" />
                     <input type="hidden" name="profileIndex" value="-1" id="formIndex"/>
-                    <%- include('partials/displayProfile', {i:i}) %>
-                    <input class="applyButton" type="button" id="apply" value="Applica">
-                    <input class="applyButton" type="button" id="delete" value="Elimina">
+                    <profile>
+                        <h1><%= elencoProfili[i].nome %></h1>
+                        <p><%= elencoProfili[i].descrizione %></p>
+                        <%- include('partials/displayProfile', {i:i}) %>
+                        <div class="buttons">
+                            <input class="applyButton" type="button" id="apply" value="Applica">
+                            <input class="applyButton" type="button" id="delete" value="Elimina">
+                        </div>
+                    </profile>
                 </form>
 
                 <script>
