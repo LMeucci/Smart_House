@@ -3,12 +3,16 @@ const fs = require('fs'),
       current = './model/current-profile.json',
       template = './model/template.json',
       profiles = './model/profiles.json',
-      MIN_LED_INTENSITY = 0,
+      LED_OFF = 0,
       MAX_LED_INTENSITY = 10,
       NO_PR_SELECTED = "Nessuno",
       LED_CMD = 2,
+      LED_OFF_CMD = 5,
       PR_CMD = 3,
-      RESET_CMD = 9;
+      PR_OFF_CMD = 6,
+      RESET_CMD = 9,
+
+      DEBUG_PORTS = 1;
 
 
 ///////////////////////////* Exposed Functions *///////////////////////////////
@@ -145,6 +149,12 @@ function setUpLED(whichLED, value)
     (scaledValue < 100) ? console.log(`0${scaledValue}`) : console.log(scaledValue);
 }
 
+function turnOffLED(whichLED)
+{
+    console.log(LED_OFF_CMD);
+    console.log(whichLED);
+}
+
 function setUpPR(whichPR, whichLED)
 {
     console.log(PR_CMD);
@@ -152,20 +162,37 @@ function setUpPR(whichPR, whichLED)
     console.log(whichLED);
 }
 
+function turnOffPR(whichPR)
+{
+    console.log(PR_OFF_CMD);
+    console.log(whichPR);
+}
+
 function setUpControllerDevices(currentProfile)
 {
     let i = 0;
     for(let attribute in currentProfile) {
         let attributeValue = currentProfile[attribute];
-        if( (i < 8) && (attributeValue != MIN_LED_INTENSITY) ) {
-            setUpLED(i, attributeValue);
+        if( i < 8 ) {
+            if(attributeValue != LED_OFF) {
+                setUpLED(i, attributeValue);
+            }
+            else {
+                turnOffLED(i);
+            }
         }
-        else if( (i >= 8) && (i < 16) && (attributeValue != NO_PR_SELECTED) ) {
-            setUpLED(i-8, MAX_LED_INTENSITY);
-            setUpPR(attributeValue.charAt(2)-1, i-8);
+        else if( (i >= 8) && (i < 16) ) {
+            if( attributeValue != NO_PR_SELECTED ) {
+                setUpLED(i-8, MAX_LED_INTENSITY);
+                setUpPR(attributeValue.charAt(2)-1, i-8);
+            }
+            else {
+                turnOffPR(i-8);
+            }
         }
         i++;
     }
+    console.log(DEBUG_PORTS);
 }
 
 
