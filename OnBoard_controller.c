@@ -760,8 +760,8 @@ int main (void)
   switchesInit();
   adcDefaultPinInit();
 
-  SMCR = 1;      // Set sleep bit to allow sleep mode
-  sleep_mode();  // Put the device to sleep
+  sleep_enable();
+  sleep_mode();  // Put MCU to sleep
   while(1)
   {
       // empty loop to prevent halt state
