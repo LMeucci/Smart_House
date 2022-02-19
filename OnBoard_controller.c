@@ -73,7 +73,8 @@ const uint16_t timer_duration_ms= 10;
 volatile uint16_t timerAuxCompare= 0;
 
 /* pins used to handle switches */
-volatile uint8_t current_pins;
+volatile uint8_t previous_pins,
+                 current_pins;
 
 // keeps track of pwm pins in use, used to implement ledRemove
 uint8_t pinsPWM= 0;
@@ -103,14 +104,11 @@ void responseInit(Packet *rsp, uint8_t signal)
 
 void timerADCInit(void)
 {
-  // Timer2, CTC, prescaler=1024
+  // Timer2, normal mode, prescaler= 64, 1 overflow every 1,024ms
   TCCR2A = 0;
-  TCCR2B = (1 << WGM22) | (1 << CS22) | (1 << CS20);
-  // 1 ms will correspond do 15.62 counts
-  uint8_t ocrval=(uint8_t)(15.62*timer_duration_ms);
-  OCR2A = ocrval;
+  TCCR2B = (1 << CS22);
   cli();
-  TIMSK2 |= (1 << OCIE2A);  // enable the timer output compare match A interrupt
+  TIMSK2 |= (1 << TOIE2);  // enable the timer overflow interrupt
   sei();
 }
 
@@ -580,7 +578,7 @@ ISR(USART0_UDRE_vect)
 
 /*----------------------------Other interrupt service routines--------------------------------*/
 
-ISR(TIMER2_COMPA_vect)
+ISR(TIMER2_OVF_vect)
 {
   /*---------pin mapping:-------------
                          0=pinA0, 1=pinA1, 2=pinA2,  3=pinA3,
@@ -674,12 +672,19 @@ ISR(TIMER2_COMPA_vect)
 
 ISR(PCINT2_vect)
 {
-  current_pins= (PINK & SWITCH_MASK);
+  current_pins = PINK;
+
+  // need to check only the last change
+  uint8_t changed_pin = ~( previous_pins ^ current_pins );
+
+  previous_pins = current_pins;
 
   /* 255= led off(duty cycle=0%), 0= led on max brightness(duty cycle=100%) */
   /*---------------------------pin7 buttons---------------------------------*/
   // increase button
-  if( (current_pins&(1<<PK0)) == 0 )
+  // check if "this pin changed" and "is falling edge"
+  // same check for all buttons
+  if( ((changed_pin & (1<<PK0)) == 0) && ((current_pins & (1<<PK0)) == 0) )
   {
     if(OCR4BL > BUTTON_STEP)
       OCR4BL-= BUTTON_STEP;
@@ -687,7 +692,7 @@ ISR(PCINT2_vect)
       OCR4BL= 0;
   }
   // decrease button
-  if( (current_pins&(1<<PK1)) == 0 )
+  if( ((changed_pin & (1<<PK1)) == 0) && ((current_pins & (1<<PK1)) == 0) )
   {
     if(OCR4BL < 255-BUTTON_STEP)
       OCR4BL+= BUTTON_STEP;
@@ -696,7 +701,7 @@ ISR(PCINT2_vect)
   }
   /*---------------------------pin8 buttons---------------------------------*/
   // increase button
-  if( (current_pins&(1<<PK2)) == 0 )
+  if( ((changed_pin & (1<<PK2)) == 0) && ((current_pins & (1<<PK2)) == 0) )
   {
     if(OCR4CL > BUTTON_STEP)
       OCR4CL-= BUTTON_STEP;
@@ -704,7 +709,7 @@ ISR(PCINT2_vect)
       OCR4CL= 0;
   }
   // decrease button
-  if( (current_pins&(1<<PK3)) == 0 )
+  if( ((changed_pin & (1<<PK3)) == 0) && ((current_pins & (1<<PK3)) == 0) )
   {
     if(OCR4CL < 255-BUTTON_STEP)
       OCR4CL+= BUTTON_STEP;
@@ -713,7 +718,7 @@ ISR(PCINT2_vect)
   }
   /*----------------------pin11 buttons----------------------------------*/
   // increase button
-  if( (current_pins&(1<<PK4)) == 0 )
+  if( ((changed_pin & (1<<PK4)) == 0) && ((current_pins & (1<<PK4)) == 0) )
   {
     if(OCR1AL > BUTTON_STEP)
       OCR1AL-= BUTTON_STEP;
@@ -721,7 +726,7 @@ ISR(PCINT2_vect)
       OCR1AL= 0;
   }
   //decrease button
-  if( (current_pins&(1<<PK5)) == 0 )
+  if( ((changed_pin & (1<<PK5)) == 0) && ((current_pins & (1<<PK5)) == 0) )
   {
     if(OCR1AL < 255-BUTTON_STEP)
       OCR1AL += BUTTON_STEP;
@@ -731,7 +736,7 @@ ISR(PCINT2_vect)
   }
   /*---------------------------pin12 buttons---------------------------------*/
   // increase button
-  if( (current_pins&(1<<PK6)) == 0 )
+  if( ((changed_pin & (1<<PK6)) == 0) && ((current_pins & (1<<PK6)) == 0) )
   {
     if(OCR1BL > BUTTON_STEP)
       OCR1BL-= BUTTON_STEP;
@@ -739,7 +744,7 @@ ISR(PCINT2_vect)
       OCR1BL= 0;
   }
   // decrease button
-  if( (current_pins&(1<<PK7)) == 0 )
+  if( ((changed_pin & (1<<PK7)) == 0) && ((current_pins & (1<<PK7)) == 0) )
   {
     if(OCR1BL < 255-BUTTON_STEP)
       OCR1BL+= BUTTON_STEP;
