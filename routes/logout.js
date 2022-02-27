@@ -1,7 +1,7 @@
 
 const express = require('express');
 
-const { resetController } = require('../controller/controls');
+const { restartConfiguration } = require('../controller/controls');
 
 const router = express.Router();
 
@@ -34,7 +34,7 @@ router.post('/logout', (req, res) => {
     // User logged in
     if(req.body.check) {
         req.session.destroy();
-        resetController();
+        restartConfiguration();
         res.redirect('/login');
     }
     else {

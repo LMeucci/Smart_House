@@ -328,7 +328,8 @@ void printMenu(SmartHouse *sh)
 	printf("    5- Uninstall a LED\n");
 	printf("    6- Uninstall a photoresistor\n\n");
 
-	printf("    9- Restart the configuration process\n");
+	printf("    8- Restart the configuration process\n");
+	printf("    9- Reset all devices and restart the configuration process\n");
 	printf("    0- Exit the application\n\n");
 }
 
@@ -748,6 +749,14 @@ int selectAction(SmartHouse *sh, char action)
 			if(removePR(sh) != 0)
 			{
 				printf("\n ERROR encountered during removePR()\n\n");
+			}
+			return 0;
+		case 8:
+			smartHouseInit(sh,sh->fd);
+			if(start(sh) != 0)
+			{
+				printf("\n ERROR encountered during start()\n\n");
+				return -1;
 			}
 			return 0;
 		case 9:

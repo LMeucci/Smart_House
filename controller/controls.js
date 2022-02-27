@@ -10,6 +10,7 @@ const fs = require('fs'),
       LED_OFF_CMD = 5,
       PR_CMD = 3,
       PR_OFF_CMD = 6,
+      RESTART_CMD = 8,
       RESET_CMD = 9,
 
       DEBUG_PORTS = 1;
@@ -25,6 +26,11 @@ function setUpControllerName(name)
 function resetController()
 {
     console.log(RESET_CMD);
+}
+
+function restartConfiguration()
+{
+    console.log(RESTART_CMD);
 }
 
 function resetCurrentProfile()
@@ -192,13 +198,14 @@ function setUpControllerDevices(currentProfile)
         }
         i++;
     }
-    console.log(DEBUG_PORTS);
+    //console.log(DEBUG_PORTS);
 }
 
 
 
 module.exports = {
     setUpControllerName,
+    restartConfiguration,
     resetController,
     resetCurrentProfile,
     loadCurrentProfile,
