@@ -14,7 +14,7 @@ utilizzo futuro. In tal caso, fare riferimento alla pagina
 in precendenza ai tuoi dispositivi. E' inoltre possibile
 eliminare i profili non più utilizzati.
 
-Login/Logout (rotte /login e /logout): in questa pagina puoi effettuare il login
+- Login/Logout (rotte /login e /logout): in questa pagina puoi effettuare il login
 (o il logout a seguito di un login) nell'applicazione. E'
 un'operazione necessaria al fine di accedere alle pagine
 "Configurazione" e "Profili".
